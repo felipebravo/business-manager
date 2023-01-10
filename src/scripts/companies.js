@@ -20,11 +20,13 @@ class Companies {
 
       Modal.showCompaniesModal();
 
-      const btnCreate = document.querySelector("form button");
+      const btnCreate = document.querySelector(".submitNewCo");
       const newCompanieName = document.getElementById("companiename");
       const newCompanieOpen = document.getElementById("opening_hours");
       const newCompanieDescription = document.getElementById("description");
       const newCompanieSector = document.getElementById("sector");
+
+      newCompanieSector.innerText = "";
 
       const sectors = await Requests.allSectors();
 
@@ -40,11 +42,6 @@ class Companies {
       btnCreate.addEventListener("click", async (evt) => {
         evt.preventDefault();
 
-        console.log(newCompanieName.value);
-        console.log(newCompanieOpen.value);
-        console.log(newCompanieDescription.value);
-        console.log(newCompanieSector.selectedOptions[0].id);
-
         const data = {
           name: newCompanieName.value,
           opening_hours: newCompanieOpen.value,
@@ -53,28 +50,43 @@ class Companies {
         };
 
         const res = await Requests.createNewCompanie(data);
+
+        newCompanieName.value = "";
+        newCompanieOpen.value = "";
+        newCompanieDescription.value = "";
       });
     });
   }
 
   static async handleCreatedCompanies() {
     const btnCreatedCompanies = document.querySelector(".created-companies");
+    const btnCloseCompanies = document.querySelector(".close-section");
+    const sectionCreatedCompanies =
+      document.querySelector(".render__companies");
 
     btnCreatedCompanies.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
-      const createdCompanies = document.querySelector(".render__companies div");
+      const createdCompanies = document.querySelector(
+        ".render__companies div ul"
+      );
       createdCompanies.innerText = "";
-      const ulCompanies = document.createElement("ul");
+
       const allCompanies = await Requests.showAllCompanies();
+
+      sectionCreatedCompanies.classList.toggle("hidden");
 
       allCompanies.forEach((companie) => {
         const cardLi = Render.companieModalCard(companie);
 
-        ulCompanies.appendChild(cardLi);
+        createdCompanies.appendChild(cardLi);
       });
+    });
 
-      createdCompanies.appendChild(ulCompanies);
+    btnCloseCompanies.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      sectionCreatedCompanies.classList.toggle("hidden");
     });
 
     const btnSearchCompanie = document.querySelector(".search-companie");
@@ -83,9 +95,11 @@ class Companies {
     btnSearchCompanie.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
-      const createdCompanies = document.querySelector(".render__companies div");
+      const createdCompanies = document.querySelector(
+        ".render__companies div ul"
+      );
       createdCompanies.innerText = "";
-      const ulCompanies = document.createElement("ul");
+
       const allCompanies = await Requests.showAllCompanies();
 
       allCompanies.forEach((companie) => {
@@ -98,11 +112,13 @@ class Companies {
         ) {
           const cardLi = Render.companieModalCard(companie);
 
-          ulCompanies.appendChild(cardLi);
+          createdCompanies.appendChild(cardLi);
         }
       });
 
-      createdCompanies.appendChild(ulCompanies);
+      companieNameInput.value = "";
+
+      sectionCreatedCompanies.classList.toggle("hidden");
     });
 
     const btnSearchSector = document.querySelector(".search-by-sector");
@@ -111,9 +127,11 @@ class Companies {
     btnSearchSector.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
-      const createdCompanies = document.querySelector(".render__companies div");
+      const createdCompanies = document.querySelector(
+        ".render__companies div ul"
+      );
       createdCompanies.innerText = "";
-      const ulCompanies = document.createElement("ul");
+
       const allCompanies = await Requests.showAllCompanies();
 
       allCompanies.forEach((companie) => {
@@ -126,11 +144,13 @@ class Companies {
         ) {
           const cardLi = Render.companieModalCard(companie);
 
-          ulCompanies.appendChild(cardLi);
+          createdCompanies.appendChild(cardLi);
         }
       });
 
-      createdCompanies.appendChild(ulCompanies);
+      sectorNameInput.value = "";
+
+      sectionCreatedCompanies.classList.toggle("hidden");
     });
   }
 
