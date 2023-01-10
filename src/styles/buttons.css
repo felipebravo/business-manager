@@ -1,5 +1,5 @@
 .button-default {
-  height: 40px;
+  min-height: 40px;
   width: 100px;
 
   text-align: center;
@@ -38,7 +38,7 @@
 }
 
 .button-alt {
-  height: 40px;
+  min-height: 40px;
   width: 300px;
 
   text-align: center;

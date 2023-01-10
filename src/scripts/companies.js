@@ -14,9 +14,15 @@ class Companies {
 
   static async createNewCompanie() {
     const btnCreateNewCompanie = document.querySelector(".create-companie");
+    const sectionCreatedCompanies =
+      document.querySelector(".render__companies");
 
     btnCreateNewCompanie.addEventListener("click", async (evt) => {
       evt.preventDefault();
+
+      if (!sectionCreatedCompanies.classList.contains("hidden")) {
+        sectionCreatedCompanies.classList.toggle("hidden");
+      }
 
       Modal.showCompaniesModal();
 
@@ -63,9 +69,20 @@ class Companies {
     const btnCloseCompanies = document.querySelector(".close-section");
     const sectionCreatedCompanies =
       document.querySelector(".render__companies");
+    const companiesModal = document.querySelector(".bg__modal");
+
+    btnCloseCompanies.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      sectionCreatedCompanies.classList.toggle("hidden");
+    });
 
     btnCreatedCompanies.addEventListener("click", async (evt) => {
       evt.preventDefault();
+
+      if (!companiesModal.classList.contains("hidden")) {
+        companiesModal.classList.toggle("hidden");
+      }
 
       const createdCompanies = document.querySelector(
         ".render__companies div ul"
@@ -74,19 +91,15 @@ class Companies {
 
       const allCompanies = await Requests.showAllCompanies();
 
-      sectionCreatedCompanies.classList.toggle("hidden");
-
       allCompanies.forEach((companie) => {
         const cardLi = Render.companieModalCard(companie);
 
         createdCompanies.appendChild(cardLi);
       });
-    });
 
-    btnCloseCompanies.addEventListener("click", (evt) => {
-      evt.preventDefault();
-
-      sectionCreatedCompanies.classList.toggle("hidden");
+      if (sectionCreatedCompanies.classList.contains("hidden")) {
+        sectionCreatedCompanies.classList.toggle("hidden");
+      }
     });
 
     const btnSearchCompanie = document.querySelector(".search-companie");
@@ -95,30 +108,38 @@ class Companies {
     btnSearchCompanie.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
-      const createdCompanies = document.querySelector(
-        ".render__companies div ul"
-      );
-      createdCompanies.innerText = "";
+      if (!companiesModal.classList.contains("hidden")) {
+        companiesModal.classList.toggle("hidden");
+      }
 
-      const allCompanies = await Requests.showAllCompanies();
+      if (companieNameInput.value.length) {
+        const createdCompanies = document.querySelector(
+          ".render__companies div ul"
+        );
+        createdCompanies.innerText = "";
 
-      allCompanies.forEach((companie) => {
-        if (
-          companie.name.toLowerCase() ==
-            companieNameInput.value.toLowerCase() ||
-          companie.name
-            .toLowerCase()
-            .includes(companieNameInput.value.toLowerCase())
-        ) {
-          const cardLi = Render.companieModalCard(companie);
+        const allCompanies = await Requests.showAllCompanies();
 
-          createdCompanies.appendChild(cardLi);
+        allCompanies.forEach((companie) => {
+          if (
+            companie.name.toLowerCase() ==
+              companieNameInput.value.toLowerCase() ||
+            companie.name
+              .toLowerCase()
+              .includes(companieNameInput.value.toLowerCase())
+          ) {
+            const cardLi = Render.companieModalCard(companie);
+
+            createdCompanies.appendChild(cardLi);
+          }
+        });
+
+        companieNameInput.value = "";
+
+        if (sectionCreatedCompanies.classList.contains("hidden")) {
+          sectionCreatedCompanies.classList.toggle("hidden");
         }
-      });
-
-      companieNameInput.value = "";
-
-      sectionCreatedCompanies.classList.toggle("hidden");
+      }
     });
 
     const btnSearchSector = document.querySelector(".search-by-sector");
@@ -127,30 +148,38 @@ class Companies {
     btnSearchSector.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
-      const createdCompanies = document.querySelector(
-        ".render__companies div ul"
-      );
-      createdCompanies.innerText = "";
+      if (!companiesModal.classList.contains("hidden")) {
+        companiesModal.classList.toggle("hidden");
+      }
 
-      const allCompanies = await Requests.showAllCompanies();
+      if (sectorNameInput.value.length) {
+        const createdCompanies = document.querySelector(
+          ".render__companies div ul"
+        );
+        createdCompanies.innerText = "";
 
-      allCompanies.forEach((companie) => {
-        if (
-          companie.sectors.description.toLowerCase() ==
-            sectorNameInput.value.toLowerCase() ||
-          companie.sectors.description
-            .toLowerCase()
-            .includes(sectorNameInput.value.toLowerCase())
-        ) {
-          const cardLi = Render.companieModalCard(companie);
+        const allCompanies = await Requests.showAllCompanies();
 
-          createdCompanies.appendChild(cardLi);
+        allCompanies.forEach((companie) => {
+          if (
+            companie.sectors.description.toLowerCase() ==
+              sectorNameInput.value.toLowerCase() ||
+            companie.sectors.description
+              .toLowerCase()
+              .includes(sectorNameInput.value.toLowerCase())
+          ) {
+            const cardLi = Render.companieModalCard(companie);
+
+            createdCompanies.appendChild(cardLi);
+          }
+        });
+
+        sectorNameInput.value = "";
+
+        if (sectionCreatedCompanies.classList.contains("hidden")) {
+          sectionCreatedCompanies.classList.toggle("hidden");
         }
-      });
-
-      sectorNameInput.value = "";
-
-      sectionCreatedCompanies.classList.toggle("hidden");
+      }
     });
   }
 
