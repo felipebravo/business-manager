@@ -6,7 +6,7 @@
   margin-bottom: 10px;
 }
 
-.input-div > i {
+.input-div > button {
   position: absolute;
   right: 5px;
   top: 20px;
@@ -15,10 +15,13 @@
 
   font-size: 20px;
 
+  background-color: transparent;
+  color: var(--color-white);
+
   cursor: pointer;
 }
 
-.input-div > i:hover {
+.input-div > button:hover {
   transition: 0.5s;
   opacity: 1;
 }

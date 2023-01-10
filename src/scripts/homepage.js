@@ -11,7 +11,7 @@ class HomePage {
 
     const userInput = document.getElementById("user");
     const passInput = document.getElementById("pass");
-    const btnLogin = document.querySelector(".login__form button");
+    const btnLogin = document.querySelector(".submitLogin");
 
     btnLogin.addEventListener("click", async (evt) => {
       evt.preventDefault();
@@ -26,6 +26,31 @@ class HomePage {
       res == undefined
         ? alert("Login ou senha inválido, tente novamente!")
         : null;
+    });
+  }
+
+  static async seeLoginPass() {
+    const btnSeePassword = document.querySelector(".btnSeePassword");
+    const btnHidePassword = document.querySelector(".btnHidePassword");
+
+    btnSeePassword.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      const inputLoginPassword = (document.getElementById("pass").type =
+        "text");
+
+      btnSeePassword.classList.toggle("hidden");
+      btnHidePassword.classList.toggle("hidden");
+    });
+
+    btnHidePassword.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      const inputLoginPassword = (document.getElementById("pass").type =
+        "password");
+
+      btnSeePassword.classList.toggle("hidden");
+      btnHidePassword.classList.toggle("hidden");
     });
   }
 
@@ -46,7 +71,7 @@ class HomePage {
     const emailInput = document.getElementById("email");
     const levelInput = document.getElementById("level");
     const passInput = document.getElementById("password");
-    const btnSignup = document.querySelector(".signup__form button");
+    const btnSignup = document.querySelector(".submitSignUp");
 
     btnSignup.addEventListener("click", async (evt) => {
       evt.preventDefault();
@@ -61,8 +86,35 @@ class HomePage {
       const res = await Requests.signup(data);
     });
   }
+
+  static async seeSignupPass() {
+    const btnSeeSignPassword = document.querySelector(".btnSeeSignPassword");
+    const btnHideSignPassword = document.querySelector(".btnHideSignPassword");
+
+    btnSeeSignPassword.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      const inputSignupPassword = (document.getElementById("password").type =
+        "text");
+
+      btnSeeSignPassword.classList.toggle("hidden");
+      btnHideSignPassword.classList.toggle("hidden");
+    });
+
+    btnHideSignPassword.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      const inputSignupPassword = (document.getElementById("password").type =
+        "password");
+
+      btnSeeSignPassword.classList.toggle("hidden");
+      btnHideSignPassword.classList.toggle("hidden");
+    });
+  }
 }
 
 HomePage.login();
+HomePage.seeLoginPass();
 HomePage.signup();
+HomePage.seeSignupPass();
 HomePage.allPartners();
