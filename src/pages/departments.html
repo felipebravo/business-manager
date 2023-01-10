@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="DashBoard" />
+    <link rel="stylesheet" href="../styles/departments.css" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/buttons.css" />
+    <link rel="stylesheet" href="../styles/fonts.css" />
+    <link rel="stylesheet" href="../styles/input.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <title>Departments - Kenzie Empresas</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="user-info hidden">
+          <i class="fa-regular fa-user"></i>
+          <span></span>
+        </div>
+        <div class="mobile-menu">
+          <div class="first"></div>
+          <div class="second"></div>
+          <div class="third"></div>
+        </div>
+        <div class="user-info">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Administrador</span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="/src/pages/dashboard.html">Início</a></li>
+          <li><a href="/src/pages/sectors.html">Setores</a></li>
+          <li><a href="/src/pages/companies.html">Empresas</a></li>
+          <li><a href="/src/pages/departments.html">Departamentos</a></li>
+          <li><a href="/src/pages/users.html">Usuários</a></li>
+        </ul>
+        <div class="alt-menu">
+          <div class="dark-toggle">
+            <button class="ball"></button>
+          </div>
+          <button class="button-icon logout">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <div class="current-page"><h2>Departamentos</h2></div>
+    <main class="main__container">
+      <div class="main__container-div">
+        <section class="create__department">
+          <form class="departments-forms">
+            <h2 class="font-title-2">Criar departamento</h2>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="text"
+                name="departmentname"
+                id="departmentname"
+                placeholder="Digite o nome do novo departamento"
+              />
+              <label class="label-default font-text-2" for="departmentname"
+                >Departamento</label
+              >
+            </div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="text"
+                name="departmentdescription"
+                id="departmentdescription"
+                placeholder="Digite a descrição do departamento"
+              />
+              <label
+                class="label-default font-text-2"
+                for="departmentdescription"
+                >Descrição</label
+              >
+            </div>
+            <div>
+              <label for="companiesOptions"
+                >Empresa que receberá o novo departamento</label
+              >
+              <select id="companiesOptions">
+                <option id="0">Selecione a empresa</option>
+              </select>
+            </div>
+            <button class="button-alt font-text-2">Criar</button>
+          </form>
+        </section>
+        <section class="departments__by__companie">
+          <form class="departments-forms">
+            <h2 class="font-title-2">Departamentos por empresa</h2>
+            <div>
+              <label for="selectCompanie">Selecione a empresa</label>
+              <select name="selectCompanie" id="selectCompanie">
+                <option id="0">Selecione a empresa</option>
+              </select>
+            </div>
+            <p class="font-text-1">E/Ou também</p>
+            <div>
+              <label for="selectDepartment">Selecione o departamento</label>
+              <select name="selectDepartment" id="selectDepartment">
+                <option id="0">Selecione o departamento</option>
+              </select>
+            </div>
+            <div class="departments__companie"></div>
+            <button class="button-alt font-text-2">Buscar</button>
+          </form>
+        </section>
+        <section class="department__description">
+          <form class="departments-forms">
+            <h2 class="font-title-2">Departamentos</h2>
+            <div>
+              <label for="departmentoptions"
+                >Selecione o departamento para ver a descrição do mesmo</label
+              >
+              <select name="departmentoptions" id="departmentoptions">
+                <option id="0">Selecione o departamento</option>
+              </select>
+            </div>
+            <div class="department__render"></div>
+            <button class="button-alt font-text-2">Buscar</button>
+          </form>
+        </section>
+        <section class="workers__by__department">
+          <form class="departments-forms">
+            <h2 class="font-title-2">Funcionários por departamento</h2>
+            <div class="departments__companies">
+              <label for="departoptions"
+                >Selecione o departamento para ver os funcionários do
+                mesmo</label
+              >
+              <select name="departoptions" id="departoptions">
+                <option id="0">Selecione o departamento</option>
+              </select>
+            </div>
+            <button class="button-alt font-text-2">Buscar</button>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer class="font-text-3">
+      <span>© Kenzie 2022 | Todos os direitos reservados</span>
+    </footer>
+
+    <script type="module" src="../scripts/departments.js"></script>
+  </body>
+</html>

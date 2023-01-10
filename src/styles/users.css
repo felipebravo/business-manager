@@ -1,0 +1,91 @@
+.main__container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+
+  height: 80vh;
+
+  background-image: url("../assets/bg-dash.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.main__container > div {
+  display: flex;
+  gap: 32px;
+
+  height: 50%;
+  width: 80%;
+  padding: 32px 0;
+
+  border-bottom: 1px solid var(--color-white);
+}
+
+.edit__worker {
+  width: 50%;
+  padding: 32px;
+
+  background-color: var(--color-black-op);
+  border-radius: var(--border-radius-0);
+}
+
+.hire__fire {
+  width: 50%;
+  padding: 32px;
+
+  background-color: var(--color-black-op);
+  border-radius: var(--border-radius-0);
+}
+
+.users__forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+
+  color: var(--color-white);
+  text-align: center;
+}
+
+.users__forms > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 90%;
+}
+
+.hire__fire-buttons {
+  display: flex;
+  flex-direction: rows;
+}
+
+.users__forms > div > select {
+  width: 90%;
+  height: 1.8rem;
+  padding: 0 5px;
+
+  border-radius: var(--border-radius-0);
+  color: var(--dark-blue);
+}
+
+.available__employees {
+  height: 50%;
+  width: 80%;
+  padding: 32px;
+  margin-bottom: 32px;
+
+  background-color: var(--color-black-op);
+  border-radius: var(--border-radius-0);
+
+  color: var(--color-white);
+  text-align: center;
+}

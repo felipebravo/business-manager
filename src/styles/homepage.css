@@ -1,0 +1,160 @@
+.main__container {
+  position: relative;
+
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.login {
+  position: relative;
+  z-index: -1;
+
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateZ(-1px) scale(2);
+
+  background: url("../assets/bg-city.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-0);
+
+  width: 400px;
+  height: 500px;
+  padding: 10px;
+
+  backdrop-filter: blur(5px);
+  background-color: var(--color-black-op);
+
+  border-radius: var(--border-radius-0);
+
+  color: var(--color-white);
+  text-align: center;
+}
+
+.login__form > div {
+  width: 90%;
+}
+
+.companies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 50%;
+  padding: 20px;
+
+  background-image: linear-gradient(
+    transparent,
+    var(--light-blue),
+    var(--primary-blue)
+  );
+}
+
+.all__partners {
+  display: flex;
+  gap: var(--gap-2);
+
+  width: 100%;
+  padding: 5px 0;
+
+  overflow-x: auto;
+}
+
+.all__partners::-webkit-scrollbar {
+  background-color: var(--color-white);
+  height: 5px;
+  border-radius: var(--border-radius-0);
+}
+
+.all__partners::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue);
+  border-radius: var(--border-radius-0);
+}
+
+.all__partners > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  min-width: 22%;
+  height: 200px;
+  padding: 20px;
+
+  background-color: var(--dark-blue);
+  color: var(--color-white);
+  text-align: center;
+
+  border-radius: var(--border-radius-0);
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 90vh;
+  width: 100vw;
+
+  background-image: linear-gradient(var(--primary-blue), var(--dark-blue));
+}
+
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-0);
+
+  width: 400px;
+  height: 500px;
+  padding: 10px;
+
+  border-radius: var(--border-radius-0);
+  border: 1px solid var(--color-white);
+
+  color: var(--color-white);
+  text-align: center;
+}
+
+.signup__form > div {
+  width: 90%;
+}
+
+@media (max-width: 1000px) {
+  .all__partners > li {
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 410px) {
+  .login__form {
+    width: 300px;
+  }
+
+  .signup__form {
+    width: 300px;
+  }
+
+  .all__partners > li {
+    min-width: 80%;
+  }
+}

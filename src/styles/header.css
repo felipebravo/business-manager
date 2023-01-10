@@ -1,0 +1,172 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 8vh;
+  padding: 0 32px;
+
+  background-color: var(--color-black);
+}
+
+.user-info > span {
+  color: var(--color-white);
+}
+
+.user-info > i {
+  color: var(--color-white);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+
+.nav-list > li {
+  letter-spacing: 2px;
+}
+
+.nav-list > li > a:hover {
+  color: var(--light-blue);
+
+  transition: 0.5s;
+}
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu > div {
+  width: 32px;
+  height: 2px;
+  margin: 8px;
+
+  background-color: var(--color-white);
+
+  transition: 0.3s;
+}
+
+.alt-menu {
+  display: flex;
+  gap: 32px;
+}
+
+.dark-toggle {
+  position: relative;
+  transform: scale(1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  width: 50px;
+  height: 30px;
+  padding: 5px;
+
+  background-color: var(--dark-blue);
+  border-radius: 50px;
+}
+
+.dark-toggle .ball {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transform: var(--ball-transition);
+  transition: transform 0.2s linear;
+
+  width: 25px;
+  height: 25px;
+
+  background-color: var(--primary-blue);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.dark-toggle > i {
+  color: var(--color-white);
+  font-size: 24px;
+
+  opacity: 0.5;
+}
+
+.dark-toggle > i:hover {
+  transition: 0.5s;
+
+  opacity: 1;
+}
+
+.current-page {
+  height: 4vh;
+  padding: 5px 0;
+
+  background-color: var(--dark-blue);
+
+  color: var(--color-white);
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nav-list {
+    position: absolute;
+    top: 8vh;
+    left: -110vw;
+    z-index: 1;
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    width: 70vw;
+    height: 84vh;
+
+    background: var(--color-black);
+
+    transform: translateX(50%);
+    transition: transform 0.3s ease-in;
+  }
+  .nav-list li {
+    margin-left: 0;
+    opacity: 0;
+  }
+  .mobile-menu {
+    display: block;
+  }
+
+  .admin-options {
+    width: 90%;
+  }
+}
+
+.nav-list.active {
+  transform: translateX(110vw);
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50px);
+  }
+}
+
+.mobile-menu.active .first {
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .second {
+  opacity: 0;
+}
+
+.mobile-menu.active .third {
+  transform: rotate(45deg) translate(-5px, -7px);
+}

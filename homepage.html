@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Home Page" />
+    <link rel="stylesheet" href="./src/styles/global.css" />
+    <link rel="stylesheet" href="./src/styles/fonts.css" />
+    <link rel="stylesheet" href="./src/styles/buttons.css" />
+    <link rel="stylesheet" href="./src/styles/input.css" />
+    <link rel="stylesheet" href="./src/styles/homepage.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./src/fontawesome/css/all.min.css"
+    />
+    <title>Home Page - Kenzie Empresas</title>
+  </head>
+  <body>
+    <main class="main__container">
+      <section class="login">
+        <form class="login__form">
+          <div>
+            <h1 class="font-title-1">
+              Bem vindo de volta<a name="page-up"></a>
+            </h1>
+            <p class="font-text-2">Por favor faça o login</p>
+          </div>
+          <div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="text"
+                id="user"
+                placeholder="Entre com o nome de usuário"
+              />
+              <label class="font-text-2 label-default" for="user">E-mail</label>
+            </div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="password"
+                id="pass"
+                placeholder="Entre com a senha"
+              />
+              <label class="font-text-2 label-default" for="password"
+                >Senha</label
+              >
+              <i class="fa-regular fa-eye"></i>
+              <!-- <i class="fa-regular fa-eye-slash"></i> -->
+            </div>
+          </div>
+          <button class="font-text-2 button-default">Acessar</button>
+          <a href="#page-bottom">Ainda não possui acesso?</a>
+          <footer class="font-text-3">
+            © Kenzie 2022 | Todos os direitos reservados
+          </footer>
+        </form>
+      </section>
+      <section class="companies">
+        <ul class="all__partners"></ul>
+      </section>
+      <section class="signup">
+        <form class="signup__form">
+          <div>
+            <h1 class="section-title font-title-1">Cadastre-se</h1>
+            <p class="section-sub-title font-text-2">Insira seus dados</p>
+          </div>
+          <div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="text"
+                id="username"
+                placeholder="Inscreva um nome de usuário"
+              />
+              <label class="font-text-2 label-default" for="username"
+                >Nome de usuário</label
+              >
+            </div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="email"
+                id="email"
+                placeholder="Inscreva seu e-mail"
+              />
+              <label class="font-text-2 label-default" for="email"
+                >E-mail</label
+              >
+            </div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="text"
+                id="level"
+                placeholder="Inscreva seu nível"
+              />
+              <label class="font-text-2 label-default" for="level"
+                >Nível profissional</label
+              >
+            </div>
+            <div class="input-div">
+              <input
+                class="input-default"
+                type="password"
+                id="password"
+                placeholder="Inscreva uma senha"
+              />
+              <label class="font-text-2 label-default" for="password"
+                >Senha</label
+              >
+              <i class="fa-regular fa-eye"></i>
+              <!-- <i class="fa-regular fa-eye-slash"></i> -->
+            </div>
+          </div>
+          <button class="font-text-2 button-default">Cadastrar</button>
+          <a href="./homepage.html"> Voltar para o login > </a>
+          <footer class="font-text-3">
+            © Kenzie 2022 | Todos os direitos reservados<a
+              name="page-bottom"
+            ></a>
+          </footer>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="./src/scripts/homepage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/users.css" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/buttons.css" />
+    <link rel="stylesheet" href="../styles/fonts.css" />
+    <link rel="stylesheet" href="../styles/input.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../fontawesome/css/all.min.css"
+    />
+    <title>Users - Kenzie Empresas</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="user-info hidden">
+          <i class="fa-regular fa-user"></i>
+          <span></span>
+        </div>
+        <div class="mobile-menu">
+          <div class="first"></div>
+          <div class="second"></div>
+          <div class="third"></div>
+        </div>
+        <div class="user-info">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Administrador</span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="/src/pages/dashboard.html">Início</a></li>
+          <li><a href="/src/pages/sectors.html">Setores</a></li>
+          <li><a href="/src/pages/companies.html">Empresas</a></li>
+          <li><a href="/src/pages/departments.html">Departamentos</a></li>
+          <li><a href="/src/pages/users.html">Usuários</a></li>
+        </ul>
+        <div class="alt-menu">
+          <div class="dark-toggle">
+            <button class="ball"></button>
+          </div>
+          <button class="button-icon logout">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <div class="current-page"><h2>Usuários</h2></div>
+    <main class="main__container">
+      <div>
+        <section class="edit__worker">
+          <form class="users__forms">
+            <h2 class="font-title-2">Editar funcionário</h2>
+            <div class="departments__companies">
+              <label for="employeename">Selecione o funcionário</label>
+              <select name="employeename" id="employeename">
+                <option id="0">Selecione o funcionário</option>
+              </select>
+            </div>
+            <div class="departments__companies">
+              <label for="worktype">Modalidade de trabalho</label>
+              <select name="worktype" id="worktype">
+                <option id="0">Selecione a modalidade</option>
+                <option id="homeoffice">Home Office</option>
+                <option id="presencial">Presencial</option>
+                <option id="hybrid">Hibrido</option>
+              </select>
+            </div>
+            <div class="departments__companies">
+              <label for="level">Nível</label>
+              <select name="level" id="level">
+                <option id="0">Selecione o nível</option>
+                <option id="estagiario">Estágio</option>
+                <option id="junior">Júnior</option>
+                <option id="pleno">Pleno</option>
+                <option id="senior">Sênior</option>
+              </select>
+            </div>
+            <button class="button-alt font-text-2">Editar</button>
+          </form>
+        </section>
+        <section class="hire__fire">
+          <form class="users__forms">
+            <h2 class="font-title-2">Contratar/Desligar</h2>
+            <div class="departments__companies">
+              <label for="workername">Selecione o funcionário</label>
+              <select name="workername" id="workername">
+                <option id="0">Selecione o funcionário</option>
+              </select>
+              <p class="font-text-1">E também</p>
+              <label for="departhiring">Selecione o departamento</label>
+              <select name="departhiring" id="departhiring">
+                <option id="0">Selecione o departamento</option>
+              </select>
+            </div>
+            <div>
+              <div class="hire__fire-buttons">
+                <button class="button-default font-text-2 hire">
+                  Contratar
+                </button>
+                <button class="button-default font-text-2 fire">Demitir</button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <section class="available__employees">
+        <h2 class="font-title-2">Funcionários disponíveis</h2>
+      </section>
+    </main>
+    <footer class="font-text-3">
+      <span>© Kenzie 2022 | Todos os direitos reservados</span>
+    </footer>
+  </body>
+</html>

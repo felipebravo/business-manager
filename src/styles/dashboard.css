@@ -1,0 +1,195 @@
+.main__container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 80vh;
+
+  background-image: url("../assets/bg-dash.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.admin-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  width: 70%;
+}
+
+.admin-options > li {
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+
+  color: var(--color-white);
+
+  border: 1px solid var(--light-blue);
+  border-radius: var(--border-radius-0);
+  background-color: var(--color-black-op);
+  backdrop-filter: blur(5px);
+
+  cursor: pointer;
+}
+
+.admin-options > li > a:hover {
+  color: var(--light-blue);
+
+  transition: 0.5s;
+}
+
+.admin-options > li > a {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+
+  height: 100%;
+}
+
+.admin-options > li > a > i {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+/* .admin__companies {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--gap-5);
+
+  width: 80%;
+  height: 80%;
+
+  overflow-y: auto;
+}
+
+.admin__companies > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-1);
+
+  width: 400px;
+  padding: 20px;
+
+  background-color: var(--color-black-op);
+  backdrop-filter: blur(5px);
+  border-radius: var(--border-radius-0);
+  color: var(--color-white);
+  text-align: center;
+} */
+
+/* main ul li p {
+  text-align: center;
+} */
+
+main section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+main section div {
+  width: 20%;
+}
+
+.companie__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2);
+  width: 85%;
+  height: 170px;
+  padding: 5px;
+  background-color: var(--primary0);
+  border-radius: var(--border-radius-0);
+  color: var(--green0);
+  text-align: center;
+}
+
+.department__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2);
+  width: 85%;
+  height: 170px;
+  padding: 5px;
+  background-color: var(--primary0);
+  border-radius: var(--border-radius-0);
+  color: var(--green0);
+  text-align: center;
+}
+
+.coworkers__card {
+  display: flex;
+  gap: var(--gap-2);
+  overflow: auto;
+  width: 100%;
+  height: 190px;
+}
+
+.coworkers__card li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2);
+  min-width: 85%;
+  height: 170px;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: var(--primary0);
+  border-radius: var(--border-radius-0);
+  color: var(--green0);
+  text-align: center;
+}
+
+@media (max-width: 780px) {
+  .admin-options {
+    grid-template-columns: 1fr;
+    gap: 32px;
+
+    width: 70%;
+    height: 80%;
+    padding: 20px;
+
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 490px) {
+  .admin-options > li {
+    height: 250px;
+  }
+
+  .admin-options > li > div > i {
+    position: absolute;
+    left: 45%;
+  }
+
+  .admin-options > li > div > h3 {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .user-info > span {
+    display: none;
+  }
+
+  .admin-options > li > a > h3 {
+    display: none;
+  }
+
+  .admin-options > li > a > i {
+    left: 45%;
+  }
+}
