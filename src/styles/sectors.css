@@ -49,6 +49,7 @@
 
 .companies__ul {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: var(--gap-5);
 
@@ -75,6 +76,16 @@
 
   color: var(--color-white);
   text-align: center;
+}
+
+@media (max-width: 430px) {
+  .main__form {
+    width: 90%;
+  }
+
+  .companies__ul li {
+    width: 90%;
+  }
 }
 
 @media (max-width: 390px) {
