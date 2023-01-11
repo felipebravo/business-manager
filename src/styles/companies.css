@@ -187,13 +187,13 @@
   text-align: center;
 }
 
-.render__companies div ul li h3 {
+/* .render__companies div ul li h3 {
   text-align: center;
 }
 
 .render__companies div ul li p {
   text-align: center;
-}
+} */
 
 @media (max-width: 1100px) {
   .companies > ul {

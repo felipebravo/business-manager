@@ -11,8 +11,26 @@ class Departments {
     });
   }
 
+  static headerNavigation() {
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const navList = document.querySelector(".nav-list");
+    const navLinks = document.querySelectorAll(".nav-list li");
+
+    mobileMenu.addEventListener("click", () => {
+      console.log("oi");
+      navList.classList.toggle("active");
+      mobileMenu.classList.toggle("active");
+      navLinks.forEach((link, index) => {
+        link.style.animation
+          ? (link.style.animation = "")
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${
+              index / 7 + 0.3
+            }s`);
+      });
+    });
+  }
+
   static async createNewDepartment() {
-    const section = document.querySelector(".create__department");
     const btnCreateNewDepartment = document.querySelector(
       ".create__department form button"
     );
@@ -40,14 +58,21 @@ class Departments {
       };
 
       const res = await Requests.createDepartment(data);
+
+      newDepart.value = "";
+      newDepartDescription.value = "";
+
+      Departments.handleDepartmentsByCompanie();
+      Departments.handleDepartmentDescription();
+      Departments.handleWorkersByDepartment();
     });
   }
 
   static async handleDepartmentsByCompanie() {
-    const div = document.querySelector(".departments__companie");
     const btnSearchDepartByCompanie = document.querySelector(
       ".departments__by__companie form button"
     );
+    const section = document.querySelector(".departments__results");
 
     const selectOption = document.getElementById("selectCompanie");
 
@@ -61,6 +86,12 @@ class Departments {
 
     const selectDepart = document.getElementById("selectDepartment");
 
+    selectDepart.innerText = "";
+    const emptySelect = document.createElement("option");
+    emptySelect.innerText = "Selecione o departamento";
+    emptySelect.id = "0";
+    selectDepart.appendChild(emptySelect);
+
     const allDepartments = await Requests.allDepartments();
 
     allDepartments.forEach((department) => {
@@ -72,28 +103,37 @@ class Departments {
     btnSearchDepartByCompanie.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
+      const departmentsByCompany = document.querySelector(
+        ".departments__results div ul"
+      );
+      departmentsByCompany.innerText = "";
+
       const res = await Requests.allDepartmentsByCompanie(
         selectOption.selectedOptions[0].id
       );
 
       if (selectDepart.selectedOptions[0].id == 0) {
-        div.innerText = "";
+        departmentsByCompany.innerText = "";
 
         res.forEach((department) => {
           const departmentCard = Render.renderDepartmentCard(department);
 
-          div.appendChild(departmentCard);
+          departmentsByCompany.appendChild(departmentCard);
         });
       } else {
-        div.innerText = "";
+        departmentsByCompany.innerText = "";
 
         res.forEach((department) => {
           if (department.name == selectDepart.selectedOptions[0].innerText) {
             const departmentCard = Render.renderDepartmentCard(department);
 
-            div.appendChild(departmentCard);
+            departmentsByCompany.appendChild(departmentCard);
           }
         });
+      }
+
+      if (section.classList.contains("hidden")) {
+        section.classList.toggle("hidden");
       }
     });
   }
@@ -105,6 +145,12 @@ class Departments {
     );
 
     const selectOption = document.getElementById("departmentoptions");
+
+    selectOption.innerText = "";
+    const emptySelect = document.createElement("option");
+    emptySelect.innerText = "Selecione o departamento";
+    emptySelect.id = "0";
+    selectOption.appendChild(emptySelect);
 
     const allDepartments = await Requests.allDepartments();
 
@@ -138,6 +184,12 @@ class Departments {
 
     const selectDepart = document.getElementById("departoptions");
 
+    selectDepart.innerText = "";
+    const emptySelect = document.createElement("option");
+    emptySelect.innerText = "Selecione o departamento";
+    emptySelect.id = "0";
+    selectDepart.appendChild(emptySelect);
+
     const allDepartments = await Requests.allDepartments();
 
     allDepartments.forEach((department) => {
@@ -165,6 +217,17 @@ class Departments {
     });
   }
 
+  static async closeSectionResults() {
+    const btnCloseSectionResults = document.querySelector(".button-close");
+    const section = document.querySelector(".departments__results");
+
+    btnCloseSectionResults.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      section.classList.toggle("hidden");
+    });
+  }
+
   static logout() {
     const btnLogout = document.querySelector(".logout");
 
@@ -179,8 +242,10 @@ class Departments {
 }
 
 Departments.handleDarkMode();
+Departments.headerNavigation();
 Departments.createNewDepartment();
 Departments.handleDepartmentsByCompanie();
 Departments.handleDepartmentDescription();
 Departments.handleWorkersByDepartment();
+Departments.closeSectionResults();
 Departments.logout();

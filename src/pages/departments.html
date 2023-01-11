@@ -104,14 +104,13 @@
                 <option id="0">Selecione a empresa</option>
               </select>
             </div>
-            <p class="font-text-1">E/Ou também</p>
+            <p class="font-text-1">
+              E se já souber o departamento que deseja verificar
+            </p>
             <div>
               <label for="selectDepartment">Selecione o departamento</label>
-              <select name="selectDepartment" id="selectDepartment">
-                <option id="0">Selecione o departamento</option>
-              </select>
+              <select name="selectDepartment" id="selectDepartment"></select>
             </div>
-            <div class="departments__companie"></div>
             <button class="button-alt font-text-2">Buscar</button>
           </form>
         </section>
@@ -122,9 +121,7 @@
               <label for="departmentoptions"
                 >Selecione o departamento para ver a descrição do mesmo</label
               >
-              <select name="departmentoptions" id="departmentoptions">
-                <option id="0">Selecione o departamento</option>
-              </select>
+              <select name="departmentoptions" id="departmentoptions"></select>
             </div>
             <div class="department__render"></div>
             <button class="button-alt font-text-2">Buscar</button>
@@ -138,14 +135,20 @@
                 >Selecione o departamento para ver os funcionários do
                 mesmo</label
               >
-              <select name="departoptions" id="departoptions">
-                <option id="0">Selecione o departamento</option>
-              </select>
+              <select name="departoptions" id="departoptions"></select>
             </div>
             <button class="button-alt font-text-2">Buscar</button>
           </form>
         </section>
       </div>
+      <section class="departments__results hidden">
+        <div>
+          <ul></ul>
+          <button class="close-section button-close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </section>
     </main>
     <footer class="font-text-3">
       <span>© Kenzie 2022 | Todos os direitos reservados</span>

@@ -70,12 +70,25 @@
   height: 180px;
   padding: 20px;
 
+  overflow-y: auto;
+
   background-color: var(--color-black-op);
   border: 1px solid var(--light-blue);
   border-radius: var(--border-radius-0);
 
   color: var(--color-white);
   text-align: center;
+}
+
+.companies__ul li::-webkit-scrollbar {
+  background-color: var(--dark-blue);
+  width: 5px;
+  border-radius: var(--border-radius-0);
+}
+
+.companies__ul li::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue);
+  border-radius: var(--border-radius-0);
 }
 
 @media (max-width: 430px) {
