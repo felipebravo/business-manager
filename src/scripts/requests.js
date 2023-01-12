@@ -1,3 +1,6 @@
+import { instance } from "./axios.js";
+import { Toast } from "./toast.js";
+
 export class Requests {
   static baseUrl = "http://localhost:6278/";
   static token = localStorage.getItem("@kenzieCompanies:token") || "";
@@ -5,6 +8,55 @@ export class Requests {
     "Content-Type": "application/json",
     Authorization: `Bearer ${this.token}`,
   };
+
+  static async login(data) {
+    const userLogin = await instance
+      .post("/auth/login", data)
+      .then((res) => {
+        localStorage.setItem("@kenzieCompanies:token", res.data.token);
+        localStorage.setItem("@kenzieCompanies:user__uuid", res.data.uuid);
+        res.data.token != "undefined" &&
+          res.data.token &&
+          (window.location.href = "./src/pages/dashboard.html");
+      })
+      .catch((err) => {
+        Toast.create("Email ou senha inválido(a)!", "red");
+      });
+
+    return userLogin;
+  }
+
+  static async signup(data) {
+    const newUser = await instance
+      .post("/auth/register/user", data)
+      .then((res) => {
+        Toast.create("Usuário cadastrado!", "green");
+
+        res.data.uuid &&
+          setTimeout(() => {
+            window.location.href = "./homepage.html";
+          }, 2000);
+      })
+      .catch((err) => {
+        Toast.create(
+          "Usuário não cadastrado, preencha todos os campos!",
+          "red"
+        );
+      });
+
+    return newUser;
+  }
+
+  static async showAllCompanies() {
+    let allCompanies = "";
+
+    await instance
+      .get("/companies")
+      .then((res) => (allCompanies = res.data))
+      .catch((err) => console.error(err));
+
+    return allCompanies;
+  }
 
   static async userInfo() {
     const userInfo = await fetch(`${this.baseUrl}users/profile`, {
@@ -55,56 +107,6 @@ export class Requests {
       .catch((err) => console.log(err));
 
     return update;
-  }
-
-  static async showAllCompanies() {
-    const allCompanies = await fetch(`${this.baseUrl}companies`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
-
-    return allCompanies;
-  }
-
-  static async login(body) {
-    const userLogin = await fetch(`${this.baseUrl}auth/login`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        localStorage.setItem("@kenzieCompanies:token", res.token);
-        localStorage.setItem("@kenzieCompanies:user__uuid", res.uuid);
-
-        res.token != "undefined" && res.token
-          ? (window.location.href = "./src/pages/dashboard.html")
-          : null;
-
-        return res;
-      })
-      .catch((err) => console.log(err));
-
-    return userLogin;
-  }
-
-  static async signup(body) {
-    const newUser = await fetch(`${this.baseUrl}auth/register/user`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        res.uuid ? (window.location.href = "./homepage.html") : alert(res);
-
-        return res;
-      })
-      .catch((err) => console.log(err));
-
-    return newUser;
   }
 
   static async companiesBySector(sector) {
@@ -248,6 +250,16 @@ export class Requests {
       .catch((err) => console.log(err));
 
     return workerEdited;
+  }
+
+  static async deleteWorker(uuid) {
+    await fetch(`${this.baseUrl}admin/delete_user/${uuid}`, {
+      method: "DELETE",
+      headers: this.headers,
+    })
+      .then((res) => res.json())
+      .then(alert("Deletado"))
+      .catch((err) => console.log(err));
   }
 
   static async usersOutOfWork() {

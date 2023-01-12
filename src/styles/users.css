@@ -15,7 +15,141 @@
   background-origin: content-box;
 }
 
-.main__container > div {
+.users {
+  position: fixed;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+  height: 80vh;
+
+  border-right: 1px solid var(--color-white);
+}
+
+.users > ul {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--gap-5);
+
+  width: 80%;
+  height: 80%;
+  padding: 56px 32px;
+
+  overflow-y: auto;
+
+  background-color: var(--color-black-op);
+  border-radius: var(--border-radius-0);
+
+  color: var(--color-white);
+}
+
+.users > ul::-webkit-scrollbar {
+  background-color: var(--dark-blue);
+  width: 5px;
+  border-radius: var(--border-radius-0);
+}
+
+.users > ul::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue);
+  border-radius: var(--border-radius-0);
+}
+
+.users > ul > div {
+  position: absolute;
+  top: 16px;
+  left: 12%;
+
+  display: flex;
+  gap: var(--gap-5);
+}
+
+.users > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-width: 250px;
+  width: 300px;
+  height: 150px;
+  padding: 20px;
+
+  border: 1px solid var(--light-blue);
+  border-radius: var(--border-radius-0);
+  color: var(--color-white);
+
+  background-color: var(--color-black-op);
+}
+
+.divUserStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--gap-5);
+
+  width: 50%;
+  height: 80%;
+}
+
+.divHandleUser {
+  width: 100%;
+
+  text-align: end;
+}
+
+.divHandleUser > button {
+  margin-left: 20px;
+
+  background-color: transparent;
+
+  color: var(--color-white);
+  opacity: 0.5;
+
+  cursor: pointer;
+}
+
+.divHandleUser > button:hover {
+  transition: 0.5s;
+
+  opacity: 1;
+}
+
+.user__edition {
+  position: fixed;
+  right: 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  height: 80vh;
+}
+
+.user__edition > div {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  direction: rtl;
+
+  width: 80%;
+  height: 80%;
+
+  border-radius: var(--border-radius-0);
+  padding: 48px 32px;
+  background-color: var(--color-black-op);
+}
+
+/* .main__container > div {
   display: flex;
   gap: 32px;
 
@@ -131,4 +265,4 @@
   background-color: var(--color-black-op);
 
   cursor: pointer;
-}
+} */

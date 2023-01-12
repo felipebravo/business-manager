@@ -59,49 +59,7 @@
   right: 10px;
 }
 
-/* .admin__companies {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--gap-5);
-
-  width: 80%;
-  height: 80%;
-
-  overflow-y: auto;
-}
-
-.admin__companies > li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--gap-1);
-
-  width: 400px;
-  padding: 20px;
-
-  background-color: var(--color-black-op);
-  backdrop-filter: blur(5px);
-  border-radius: var(--border-radius-0);
-  color: var(--color-white);
-  text-align: center;
-} */
-
-/* main ul li p {
-  text-align: center;
-} */
-
-main section {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-main section div {
-  width: 20%;
-}
-
-.companie__card {
+/* .companie__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,9 +71,9 @@ main section div {
   border-radius: var(--border-radius-0);
   color: var(--green0);
   text-align: center;
-}
+} */
 
-.department__card {
+/* .department__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,9 +85,9 @@ main section div {
   border-radius: var(--border-radius-0);
   color: var(--green0);
   text-align: center;
-}
+} */
 
-.coworkers__card {
+/* .coworkers__card {
   display: flex;
   gap: var(--gap-2);
   overflow: auto;
@@ -150,7 +108,7 @@ main section div {
   border-radius: var(--border-radius-0);
   color: var(--green0);
   text-align: center;
-}
+} */
 
 @media (max-width: 780px) {
   .admin-options {

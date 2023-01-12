@@ -15,6 +15,11 @@
       type="text/css"
       href="./src/fontawesome/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <title>Home Page - Kenzie Empresas</title>
   </head>
   <body>
@@ -45,15 +50,15 @@
                 placeholder="Entre com a senha"
               />
               <label class="font-text-2 label-default" for="pass">Senha</label>
-              <button class="btnSeePassword">
+              <button type="button" class="btnSeePassword">
                 <i class="fa-regular fa-eye"></i>
               </button>
-              <button class="btnHidePassword hidden">
+              <button type="button" class="btnHidePassword hidden">
                 <i class="fa-regular fa-eye-slash"></i>
               </button>
             </div>
           </div>
-          <button class="submitLogin font-text-2 button-default">
+          <button type="submit" class="submitLogin font-text-2 button-default">
             Acessar
           </button>
           <a href="#page-bottom">Ainda não possui acesso?</a>
@@ -115,15 +120,15 @@
               <label class="font-text-2 label-default" for="password"
                 >Senha</label
               >
-              <button class="btnSeeSignPassword">
+              <button type="button" class="btnSeeSignPassword">
                 <i class="fa-regular fa-eye"></i>
               </button>
-              <button class="btnHideSignPassword hidden">
+              <button type="button" class="btnHideSignPassword hidden">
                 <i class="fa-regular fa-eye-slash"></i>
               </button>
             </div>
           </div>
-          <button class="submitSignUp font-text-2 button-default">
+          <button type="submit" class="submitSignUp font-text-2 button-default">
             Cadastrar
           </button>
           <a href="./homepage.html"> Voltar para o login > </a>
@@ -137,5 +142,10 @@
     </main>
 
     <script type="module" src="./src/scripts/homepage.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

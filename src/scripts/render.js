@@ -1,3 +1,4 @@
+import { Users } from "./users.js";
 export class Render {
   static homePageAllCompanies(allCompanies) {
     const sectionsList = document.querySelector(".sections__list");
@@ -105,12 +106,29 @@ export class Render {
 
   static renderUsers(user) {
     const li = document.createElement("li");
+    const divUserData = document.createElement("div");
+    const divUserStatus = document.createElement("div");
+    const divHandleUser = document.createElement("div");
+    const btnEditUser = document.createElement("button");
+    const btnDeleteUser = document.createElement("button");
+    const userEdit = document.createElement("i");
+    const userDelete = document.createElement("i");
+    const userStatus = document.createElement("i");
     const userName = document.createElement("h2");
     const userEmail = document.createElement("p");
     const userLevel = document.createElement("p");
     const userKindOfWork = document.createElement("p");
 
     li.setAttribute("id", user.uuid);
+    divUserStatus.classList.add("divUserStatus");
+    divHandleUser.classList.add("divHandleUser");
+    userEdit.classList.add("fa-solid");
+    userEdit.classList.add("fa-pen");
+    userEdit.classList.add("fa-lg");
+    userDelete.classList.add("fa-solid");
+    userDelete.classList.add("fa-trash");
+    userDelete.classList.add("fa-lg");
+
     userName.innerText = user.username;
     userName.classList.add("font-title-2");
     userEmail.innerText = user.email;
@@ -120,7 +138,38 @@ export class Render {
     userKindOfWork.innerText = user.kind_of_work;
     userKindOfWork.classList.add("font-text-1");
 
-    li.append(userName, userLevel, userKindOfWork, userEmail);
+    divUserData.append(userName, userLevel, userKindOfWork, userEmail);
+
+    if (user.department_uuid == null) {
+      userStatus.classList.add("fa-solid");
+      userStatus.classList.add("fa-user-check");
+      userStatus.classList.add("fa-2xl");
+    } else {
+      userStatus.classList.add("fa-solid");
+      userStatus.classList.add("fa-user-tie");
+      userStatus.classList.add("fa-2xl");
+    }
+
+    btnEditUser.appendChild(userEdit);
+    btnDeleteUser.appendChild(userDelete);
+
+    divHandleUser.append(btnEditUser, btnDeleteUser);
+
+    divUserStatus.append(userStatus, divHandleUser);
+
+    li.append(divUserData, divUserStatus);
+
+    btnEditUser.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      Users.editWorker(user.uuid);
+    });
+
+    btnDeleteUser.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      Users.deleteWorker(user.uuid);
+    });
 
     return li;
   }

@@ -1,15 +1,15 @@
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
 
-class Users {
-  static handleDarkMode() {
-    const btnMode = document.querySelector(".dark-toggle");
-    const html = document.querySelector("html");
+export class Users {
+  // static handleDarkMode() {
+  //   const btnMode = document.querySelector(".dark-toggle");
+  //   const html = document.querySelector("html");
 
-    btnMode.addEventListener("click", () => {
-      html.classList.toggle("dark-mode");
-    });
-  }
+  //   btnMode.addEventListener("click", () => {
+  //     html.classList.toggle("dark-mode");
+  //   });
+  // }
 
   static headerNavigation() {
     const mobileMenu = document.querySelector(".mobile-menu");
@@ -27,6 +27,18 @@ class Users {
               index / 7 + 0.3
             }s`);
       });
+    });
+  }
+
+  static async handleAllUsers() {
+    const ulAllUsers = document.querySelector(".users__ul");
+
+    const allUsers = await Requests.allWorkers();
+
+    allUsers.forEach((worker) => {
+      const userCard = Render.renderUsers(worker);
+
+      ulAllUsers.appendChild(userCard);
     });
   }
 
@@ -73,38 +85,48 @@ class Users {
     });
   }
 
-  static async editWorker() {
-    const btnEdit = document.querySelector(".edit__worker button");
-
-    const allWorkers = await Requests.allWorkers();
-
-    const selectWorker = document.getElementById("employeename");
-    const selectType = document.getElementById("worktype");
-    const selectLevel = document.getElementById("level");
-
-    function workersOptions(worker) {
-      const cardWorker = Render.renderWorkersOptions(worker);
-
-      selectWorker.appendChild(cardWorker);
+  static async editWorker(uuid) {
+    const section = document.querySelector(".user__edition");
+    // const btnEdit = document.querySelector(".edit__worker button");
+    if (section.classList.contains("hidden")) {
+      section.classList.toggle("hidden");
     }
-    allWorkers.forEach(workersOptions);
 
-    btnEdit.addEventListener("click", async (evt) => {
-      evt.preventDefault();
+    // const allWorkers = await Requests.allWorkers();
 
-      const data = {
-        kind_of_work: selectType.selectedOptions[0].innerText.toLowerCase(),
-        professional_level: selectLevel.selectedOptions[0].id,
-      };
-      console.log(data);
-      console.log(selectWorker.selectedOptions[0].id);
-      const res = await Requests.editWorker(
-        data,
-        selectWorker.selectedOptions[0].id
-      );
+    // const selectWorker = document.getElementById("employeename");
+    // const selectType = document.getElementById("worktype");
+    // const selectLevel = document.getElementById("level");
 
-      console.log(res);
-    });
+    // function workersOptions(worker) {
+    //   const cardWorker = Render.renderWorkersOptions(worker);
+
+    //   selectWorker.appendChild(cardWorker);
+    // }
+    // allWorkers.forEach(workersOptions);
+
+    // btnEdit.addEventListener("click", async (evt) => {
+    //   evt.preventDefault();
+
+    //   const data = {
+    //     kind_of_work: selectType.selectedOptions[0].innerText.toLowerCase(),
+    //     professional_level: selectLevel.selectedOptions[0].id,
+    //   };
+    //   console.log(data);
+    //   console.log(selectWorker.selectedOptions[0].id);
+    //   const res = await Requests.editWorker(
+    //     data,
+    //     selectWorker.selectedOptions[0].id
+    //   );
+
+    //   console.log(res);
+    // });
+  }
+
+  static async deleteWorker(uuid) {
+    await Requests.deleteWorker(uuid);
+
+    Users.handleAllUsers();
   }
 
   static async handleUsersOutOfWork() {
@@ -136,9 +158,10 @@ class Users {
   }
 }
 
-Users.handleDarkMode();
-Users.headerNavigation();
-Users.hireFireWorker();
-Users.editWorker();
-Users.handleUsersOutOfWork();
-Users.logout();
+// Users.handleDarkMode();
+// Users.headerNavigation();
+// Users.handleAllUsers();
+// Users.hireFireWorker();
+// Users.editWorker();
+// Users.handleUsersOutOfWork();
+// Users.logout();

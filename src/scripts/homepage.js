@@ -22,10 +22,6 @@ class HomePage {
       };
 
       const res = await Requests.login(data);
-
-      res == undefined
-        ? alert("Login ou senha inválido, tente novamente!")
-        : null;
     });
   }
 
