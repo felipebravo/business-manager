@@ -27,7 +27,7 @@ export class Requests {
   }
 
   static async signup(data) {
-    const newUser = await instance
+    await instance
       .post("/auth/register/user", data)
       .then((res) => {
         Toast.create("Usuário cadastrado!", "green");
@@ -43,8 +43,6 @@ export class Requests {
           "red"
         );
       });
-
-    return newUser;
   }
 
   static async showAllCompanies() {
@@ -59,54 +57,56 @@ export class Requests {
   }
 
   static async userInfo() {
-    const userInfo = await fetch(`${this.baseUrl}users/profile`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let userInfo = "";
+
+    await instance
+      .get("/users/profile")
+      .then((res) => (userInfo = res.data))
+      .catch((err) => console.error(err));
 
     return userInfo;
   }
 
   static async coWorkers() {
-    const coWorkers = await fetch(
-      `${this.baseUrl}users/departments/coworkers`,
-      {
-        method: "GET",
-        headers: this.headers,
-      }
-    )
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let coWorkers = "";
+
+    await instance
+      .get("/users/departments/coworkers")
+      .then((res) => {
+        coWorkers = res.data;
+      })
+      .catch((err) => console.error(err));
 
     return coWorkers;
   }
 
   static async departmentsOfUserCompanie() {
-    const departments = await fetch(`${this.baseUrl}users/departments`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let departmentsOfUserCompanie = "";
 
-    return departments;
+    await instance
+      .get("/users/departments")
+      .then((res) => {
+        departmentsOfUserCompanie = res.data;
+      })
+      .catch((err) => console.error(err));
+
+    return departmentsOfUserCompanie;
   }
 
-  static async updateUserInfo(body) {
-    const update = await fetch(`${this.baseUrl}users`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
+  static async updateUserInfo(data) {
+    await instance
+      .patch("/users", data)
       .then((res) => {
-        res.uuid ? alert("Atualização feita com sucesso!") : alert(res);
-      })
-      .catch((err) => console.log(err));
+        res.data.uuid &&
+          Toast.create("Usuário atualizado com sucesso!", "green");
 
-    return update;
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, verifique as informações!", "red");
+      });
   }
 
   static async companiesBySector(sector) {

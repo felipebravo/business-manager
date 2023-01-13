@@ -17,15 +17,16 @@
       type="text/css"
       href="../fontawesome/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <title>DashBoard - Kenzie Empresas</title>
   </head>
   <body>
     <header>
-      <nav>
-        <div class="user-info hidden">
-          <i class="fa-regular fa-user"></i>
-          <span></span>
-        </div>
+      <nav class="admin-user">
         <div class="mobile-menu">
           <div class="first"></div>
           <div class="second"></div>
@@ -90,12 +91,110 @@
           </a>
         </li>
       </ul>
+      <section class="not-admin-user hidden">
+        <div class="not-admin-info">
+          <h2>
+            Dados do usuário
+            <button class="button-icon btnEditUser">
+              <i class="fa-solid fa-pen fa-2xl"></i>
+            </button>
+          </h2>
+          <div class="not-admin-user__data">
+            <p>
+              <i class="fa-solid fa-envelope"></i>
+              <span class="description">E-mail:</span>
+              <span class="userEmail"></span>
+            </p>
+            <p>
+              <i class="fa-solid fa-code"></i>
+              <span class="description">Nível técnico:</span>
+              <span class="userLevel"></span>
+            </p>
+            <p>
+              <i class="fa-solid fa-briefcase"></i>
+              <span class="description">Departamento:</span>
+              <span class="userDepartment"></span>
+            </p>
+            <p>
+              <i class="fa-solid fa-network-wired"></i>
+              <span class="description">Tipo de trabalho:</span>
+              <span class="userWork"></span>
+            </p>
+          </div>
+        </div>
+        <div class="not-admin-info">
+          <h2>Companheiros de trabalho</h2>
+          <ul class="coWorkers"></ul>
+        </div>
+        <div class="not-admin-info">
+          <h2>Departamentos da empresa</h2>
+          <ul class="companieDepartments"></ul>
+        </div>
+        <div class="bg__modal hidden">
+          <div class="content__modal">
+            <form class="update_user_form">
+              <div>
+                <h2>Atualize seus dados</h2>
+                <p>Insira os dados</p>
+              </div>
+              <div>
+                <div class="input-div">
+                  <input
+                    class="input-default"
+                    type="text"
+                    id="username"
+                    placeholder="Nome de usuário"
+                  />
+                  <label class="font-text-2 label-default" for="username"
+                    >Nome de usuário</label
+                  >
+                </div>
+                <div class="input-div">
+                  <input
+                    class="input-default"
+                    type="text"
+                    id="email"
+                    placeholder="E-mail"
+                  />
+                  <label class="font-text-2 label-default" for="username"
+                    >E-mail</label
+                  >
+                </div>
+                <div class="input-div">
+                  <input
+                    class="input-default"
+                    type="password"
+                    id="password"
+                    placeholder="Senha"
+                  />
+                  <label class="font-text-2 label-default" for="username"
+                    >Senha</label
+                  >
+                </div>
+                <button
+                  type="submit"
+                  class="submitUpdate font-text-2 button-default"
+                >
+                  Atualizar
+                </button>
+              </div>
+            </form>
+            <button class="button-close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="font-text-3">
       <span>© Kenzie 2022 | Todos os direitos reservados</span>
     </footer>
 
     <script type="module" src="../scripts/dashboard.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

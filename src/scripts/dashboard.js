@@ -30,147 +30,119 @@ class Dashboard {
   }
 
   static async adminOrNotAdmin() {
-    const ulHeader = document.querySelector(".nav-list");
-    const userDiv = document.querySelector(".user-info");
-    const user = document.querySelector(".user-info span");
-
     const res = await Requests.userInfo();
 
-    if (res.uuid) {
-      ulHeader.classList.add("hidden");
-      user.innerText = res.username;
-      user.classList.add("font-title-2");
-      userDiv.classList.remove("hidden");
+    const adminHeader = document.querySelector(".admin-user");
 
-      //   Dashboard.notAdmin(res);
-      // } else {
-      //   Dashboard.begin();
-      // }
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const navList = document.querySelector(".nav-list");
+
+    const userName = document.querySelector(".user-info span");
+    const userIcon = document.querySelector(".user-info i");
+    const welcomeMessage = document.querySelector(".current-page h2");
+
+    if (res.uuid) {
+      adminHeader.removeChild(mobileMenu);
+      adminHeader.removeChild(navList);
+
+      userIcon.classList.remove("fa-user-shield");
+      userIcon.classList.add("fa-user");
+      userName.innerText = res.username;
+
+      welcomeMessage.innerText = "Bem-vindo!";
+
+      const adminProfile = document.querySelector(".admin-options");
+      const notAdminProfile = document.querySelector(".not-admin-user");
+
+      adminProfile.classList.toggle("hidden");
+      notAdminProfile.classList.toggle("hidden");
     }
+
+    Dashboard.notAdmin(res);
   }
 
   static async notAdmin(userInfo) {
-    const main = document.querySelector("main");
-    const section = document.createElement("section");
-    const divUserCompanie = document.createElement("div");
-    const userCompanieTitle = document.createElement("h2");
-    const divUserDepartment = document.createElement("div");
-    const userDepartmentTitle = document.createElement("h2");
-    const divUserCoWorkers = document.createElement("div");
-    const userCoWorkersTitle = document.createElement("h2");
-    const ulCoWorkers = document.createElement("ul");
-    const divEditUser = document.createElement("div");
-    const userEditTitle = document.createElement("h2");
+    const userEmail = document.querySelector(".userEmail");
+    const userLevel = document.querySelector(".userLevel");
+    const userDepartment = document.querySelector(".userDepartment");
+    const userWork = document.querySelector(".userWork");
 
-    userCompanieTitle.innerText = "Sua empresa";
-    userDepartmentTitle.innerText = "Seu departamento";
-    userCoWorkersTitle.innerText = "Funcionários do seu departamento";
-    userEditTitle.innerText = "Edite seus dados";
+    userEmail.innerText = userInfo.email;
+    userLevel.innerText = userInfo.professional_level;
+    userInfo.department_uuid
+      ? (userDepartment.innerText = userInfo.department_uuid)
+      : (userDepartment.innerText = "Você ainda não possui um departamento.");
+    userInfo.kind_of_work
+      ? (userWork.innerText = userInfo.kind_of_work)
+      : (userWork.innerText = "Você ainda não possui essa informação.");
 
     const coWorkers = await Requests.coWorkers();
-    const departments = await Requests.departmentsOfUserCompanie();
-    const allCompanies = await Requests.showAllCompanies();
 
-    allCompanies.forEach((companie) => {
-      if (companie.name == departments.name) {
-        const companieCard = Render.companieModalCard(companie);
+    const ulCoWorkers = document.querySelector(".coWorkers");
+    const emptyCoWorkers = document.createElement("h3");
 
-        companieCard.classList.add("companie__card");
-        section.appendChild(divUserCompanie);
-        divUserCompanie.append(userCompanieTitle, companieCard);
-      }
-    });
+    emptyCoWorkers.innerText =
+      "Você ainda não possui companheiros de trabalho.";
 
-    departments.departments.forEach((department) => {
-      if (department.uuid == userInfo.department_uuid) {
-        const departmentCard = Render.renderDepartmentCard(department);
+    coWorkers.length > 0
+      ? coWorkers.forEach((worker) => {
+          const coWorkersCard = Render.renderUsers(worker);
 
-        departmentCard.classList.add("department__card");
-        section.appendChild(divUserDepartment);
-        divUserDepartment.append(userDepartmentTitle, departmentCard);
-      }
-    });
+          ulCoWorkers.appendChild(coWorkersCard);
+        })
+      : ulCoWorkers.appendChild(emptyCoWorkers);
 
-    coWorkers[0].users.forEach((coworker) => {
-      const coworkersCard = Render.renderUsers(coworker);
+    const departmentsOfUserCompanie =
+      await Requests.departmentsOfUserCompanie();
 
-      ulCoWorkers.appendChild(coworkersCard);
-    });
-    ulCoWorkers.classList.add("coworkers__card");
-    section.appendChild(divUserCoWorkers);
-    divUserCoWorkers.append(userCoWorkersTitle, ulCoWorkers);
-
-    const labelInputName = document.createElement("label");
-    const inputUserName = document.createElement("input");
-    const labelInputEmail = document.createElement("label");
-    const inputUserEmail = document.createElement("input");
-    const labelInputPass = document.createElement("label");
-    const inputUserPass = document.createElement("input");
-    const btnUpdateUser = document.createElement("button");
-
-    labelInputName.innerText = "Nome de usuário";
-    labelInputEmail.innerText = "E-mail";
-    labelInputPass.innerText = "Senha";
-    labelInputName.setAttribute("for", "newUserName");
-    labelInputEmail.setAttribute("for", "newUserEmail");
-    labelInputPass.setAttribute("for", "newUserPass");
-    inputUserName.setAttribute("placeholder", "Digite um nome de usuário");
-    inputUserEmail.setAttribute("placeholder", "Digite um e-mail válido");
-    inputUserPass.setAttribute("placeholder", "Digite uma senha");
-    inputUserPass.setAttribute("type", "password");
-    inputUserName.id = "newUserName";
-    inputUserEmail.id = "newUserEmail";
-    inputUserPass.id = "newUserPass";
-    inputUserName.classList.add("input-default");
-    inputUserEmail.classList.add("input-default");
-    inputUserPass.classList.add("input-default");
-    btnUpdateUser.innerText = "Atualizar";
-    btnUpdateUser.classList.add("button-orange");
-    btnUpdateUser.classList.add("font-text-1");
-
-    divEditUser.append(
-      userEditTitle,
-      labelInputName,
-      inputUserName,
-      labelInputEmail,
-      inputUserEmail,
-      labelInputPass,
-      inputUserPass,
-      btnUpdateUser
+    const ulCompanieDepartments = document.querySelector(
+      ".companieDepartments"
     );
-    section.appendChild(divEditUser);
+    const emptyDepartments = document.createElement("h3");
 
-    btnUpdateUser.addEventListener("click", async (evt) => {
-      evt.preventDefault();
+    emptyDepartments.innerText = "Você ainda não faz parte de uma empresa.";
 
-      const data = {
-        username: inputUserName.value,
-        email: inputUserEmail.value,
-        password: inputUserPass.value,
-      };
-
-      const res = await Requests.updateUserInfo(data);
-      console.log(res);
-    });
-
-    main.appendChild(section);
+    departmentsOfUserCompanie.length > 0
+      ? departmentsOfUserCompanie.forEach((department) => {})
+      : ulCompanieDepartments.appendChild(emptyDepartments);
   }
 
-  // static async begin() {
-  //   const main = document.querySelector("main");
-  //   const ulCompanies = document.createElement("ul");
-  //   const allCompanies = await Requests.showAllCompanies();
+  static async handleEditUser() {
+    const btnEditUser = document.querySelector(".btnEditUser");
+    const modalEditUser = document.querySelector(".bg__modal");
+    const btnSubmitUserUpdate = document.querySelector(".submitUpdate");
+    const btnCloseModal = document.querySelector(".button-close");
 
-  //   ulCompanies.classList.add("admin__companies");
+    btnEditUser.addEventListener("click", (evt) => {
+      evt.preventDefault();
 
-  //   allCompanies.forEach((companie) => {
-  //     const cardLi = Render.companieModalCard(companie);
+      if (modalEditUser.classList.contains("hidden")) {
+        modalEditUser.classList.toggle("hidden");
+      }
+    });
 
-  //     ulCompanies.appendChild(cardLi);
-  //   });
+    const userInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const passInput = document.getElementById("password");
 
-  //   main.appendChild(ulCompanies);
-  // }
+    btnSubmitUserUpdate.addEventListener("click", async (evt) => {
+      evt.preventDefault();
+
+      const data = {};
+
+      userInput.value.length > 0 && (data.username = userInput.value);
+      emailInput.value.length > 0 && (data.email = emailInput.value);
+      passInput.value.length > 0 && (data.password = passInput.value);
+
+      await Requests.updateUserInfo(data);
+    });
+
+    btnCloseModal.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      modalEditUser.classList.toggle("hidden");
+    });
+  }
 
   static logout() {
     const btnLogout = document.querySelector(".logout");
@@ -186,6 +158,7 @@ class Dashboard {
 }
 
 Dashboard.handleDarkMode();
-Dashboard.adminOrNotAdmin();
 Dashboard.headerNavigation();
+Dashboard.adminOrNotAdmin();
+Dashboard.handleEditUser();
 Dashboard.logout();
