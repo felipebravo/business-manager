@@ -109,42 +109,44 @@ export class Requests {
       });
   }
 
-  static async companiesBySector(sector) {
-    const companiesBySector = await fetch(
-      `${this.baseUrl}companies/${sector}`,
-      {
-        method: "GET",
-        headers: this.headers,
-      }
-    )
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
-
-    return companiesBySector;
-  }
-
   static async allSectors() {
-    const allSectors = await fetch(`${this.baseUrl}sectors`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let allSectors = "";
+
+    await instance
+      .get("/sectors")
+      .then((res) => {
+        allSectors = res.data;
+      })
+      .catch((err) => console.error(err));
 
     return allSectors;
   }
 
-  static async createNewCompanie(body) {
-    const newCompanie = await fetch(`${this.baseUrl}companies`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
+  static async companiesBySector(sector) {
+    let companiesBySector = "";
+
+    await instance
+      .get(`/companies/${sector}`)
+      .then((res) => (companiesBySector = res.data))
+      .catch((err) => console.error(err));
+
+    return companiesBySector;
+  }
+
+  static async createNewCompanie(data) {
+    const newCompanie = await instance
+      .post("/companies", data)
       .then((res) => {
-        res.uuid ? alert("Empresa cadastrada com sucesso!") : alert(res);
+        res.data.uuid && Toast.create("Empresa criada com sucesso!", "green");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        Toast.create("Todos os campos são obrigatórios!", "red");
+      });
 
     return newCompanie;
   }

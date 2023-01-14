@@ -18,7 +18,6 @@ class Companies {
     const navLinks = document.querySelectorAll(".nav-list li");
 
     mobileMenu.addEventListener("click", () => {
-      console.log("oi");
       navList.classList.toggle("active");
       mobileMenu.classList.toggle("active");
       navLinks.forEach((link, index) => {
@@ -51,8 +50,6 @@ class Companies {
       const newCompanieDescription = document.getElementById("description");
       const newCompanieSector = document.getElementById("sector");
 
-      newCompanieSector.innerText = "";
-
       const sectors = await Requests.allSectors();
 
       sectors.forEach((sector) => {
@@ -74,7 +71,7 @@ class Companies {
           sector_uuid: newCompanieSector.selectedOptions[0].id,
         };
 
-        const res = await Requests.createNewCompanie(data);
+        await Requests.createNewCompanie(data);
 
         newCompanieName.value = "";
         newCompanieOpen.value = "";

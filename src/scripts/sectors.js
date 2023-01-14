@@ -17,7 +17,6 @@ export class Sectors {
     const navLinks = document.querySelectorAll(".nav-list li");
 
     mobileMenu.addEventListener("click", () => {
-      console.log("oi");
       navList.classList.toggle("active");
       mobileMenu.classList.toggle("active");
       navLinks.forEach((link, index) => {

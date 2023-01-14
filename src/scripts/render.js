@@ -49,7 +49,9 @@ export class Render {
     const li = document.createElement("li");
     const companieName = document.createElement("h3");
     const companieDescription = document.createElement("p");
+    const divSector = document.createElement("div");
     const companieSector = document.createElement("span");
+    const companieIcon = document.createElement("i");
     const companieOpen = document.createElement("span");
 
     companieName.innerText = companie.name;
@@ -61,38 +63,82 @@ export class Render {
     companieOpen.innerText = companie.opening_hours;
     companieOpen.classList.add("font-text-2");
 
-    li.append(companieName, companieDescription, companieSector, companieOpen);
+    switch (companie.sectors.description) {
+      case "Alimenticio":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-utensils");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Varejo":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-cart-shopping");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Textil":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-scroll");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Manufatura":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-industry");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Aeroespacial":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-rocket");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Automotiva":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-car");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "TI":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-computer");
+        companieIcon.classList.add("fa-2xl");
+        break;
+      case "Atacado":
+        companieIcon.classList.add("fa-solid");
+        companieIcon.classList.add("fa-tags");
+        companieIcon.classList.add("fa-xl");
+        break;
+    }
+
+    divSector.append(companieIcon, companieSector);
+    li.append(companieName, companieDescription, divSector, companieOpen);
 
     return li;
   }
 
-  static somePartners(companie) {
-    const li = document.createElement("li");
-    const companieName = document.createElement("h3");
-    const companieDescription = document.createElement("p");
-    const companieSector = document.createElement("p");
-    const companieOpeningHour = document.createElement("span");
+  // static somePartners(companie) {
+  //   const li = document.createElement("li");
+  //   const companieName = document.createElement("h3");
+  //   const companieDescription = document.createElement("p");
+  //   const companieSector = document.createElement("p");
+  //   const companieOpeningHour = document.createElement("span");
 
-    li.classList.add("slide");
-    companieName.innerText = companie.name;
-    companieName.classList.add("font-title-2");
-    companieDescription.innerText = companie.description;
-    companieDescription.classList.add("font-text-2");
-    companieDescription.classList.add("p__description");
-    companieSector.innerText = companie.sectors.description;
-    companieSector.classList.add("font-text-1");
-    companieOpeningHour.innerText = companie.opening_hours;
-    companieOpeningHour.classList.add("font-text-3");
+  //   li.classList.add("slide");
+  //   companieName.innerText = companie.name;
+  //   companieName.classList.add("font-title-2");
+  //   companieDescription.innerText = companie.description;
+  //   companieDescription.classList.add("font-text-2");
+  //   companieDescription.classList.add("p__description");
+  //   companieSector.innerText = companie.sectors.description;
+  //   companieSector.classList.add("font-text-1");
+  //   companieOpeningHour.innerText = companie.opening_hours;
+  //   companieOpeningHour.classList.add("font-text-3");
 
-    li.append(
-      companieName,
-      companieDescription,
-      companieSector,
-      companieOpeningHour
-    );
+  //   li.append(
+  //     companieName,
+  //     companieDescription,
+  //     companieSector,
+  //     companieOpeningHour
+  //   );
 
-    return li;
-  }
+  //   return li;
+  // }
 
   static renderSectorsOptions(uuid, description) {
     const option = document.createElement("option");
