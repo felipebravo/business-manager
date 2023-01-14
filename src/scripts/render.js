@@ -1,51 +1,33 @@
-import { Users } from "./users.js";
 export class Render {
-  static homePageAllCompanies(allCompanies) {
-    const sectionsList = document.querySelector(".sections__list");
-    const liSections = document.createElement("li");
-    const sections = [];
+  static allPartnersHomePage(companie) {
+    const li = document.createElement("li");
+    const companieName = document.createElement("h3");
+    const companieDescription = document.createElement("p");
+    const companieSector = document.createElement("p");
+    const companieOpeningHour = document.createElement("span");
 
-    sectionsList.innerText = "";
+    li.classList.add("slide");
+    companieName.innerText = companie.name;
+    companieName.classList.add("font-title-2");
+    companieDescription.innerText = companie.description;
+    companieDescription.classList.add("font-text-2");
+    companieDescription.classList.add("p__description");
+    companieSector.innerText = companie.sectors.description;
+    companieSector.classList.add("font-text-1");
+    companieOpeningHour.innerText = companie.opening_hours;
+    companieOpeningHour.classList.add("font-text-3");
 
-    allCompanies.forEach((companie) => {
-      !sections.includes(companie.sectors.description)
-        ? sections.push(companie.sectors.description)
-        : null;
-    });
+    li.append(
+      companieName,
+      companieDescription,
+      companieSector,
+      companieOpeningHour
+    );
 
-    sections.forEach((section) => {
-      liSections.appendChild(Render.createCompaniesSections(section));
-    });
-
-    sectionsList.appendChild(liSections);
-
-    const ulSections = document.querySelectorAll("ul li ul");
-
-    allCompanies.forEach((companie) => {
-      ulSections.forEach((section) => {
-        if (companie.sectors.description == section.className) {
-          const cardLi = Render.companieModalCard(companie);
-
-          section.appendChild(cardLi);
-        }
-      });
-    });
+    return li;
   }
 
-  static createCompaniesSections(section) {
-    const ulSection = document.createElement("ul");
-    const ulTitle = document.createElement("h3");
-
-    ulSection.classList.add(section);
-    ulTitle.innerText = section;
-    ulTitle.classList.add("font-title-2");
-
-    ulSection.appendChild(ulTitle);
-
-    return ulSection;
-  }
-
-  static companieModalCard(companie) {
+  static renderCompanieCard(companie) {
     const li = document.createElement("li");
     const companieName = document.createElement("h3");
     const companieDescription = document.createElement("p");
@@ -67,37 +49,37 @@ export class Render {
       case "Alimenticio":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-utensils");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Varejo":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-cart-shopping");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Textil":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-scroll");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Manufatura":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-industry");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Aeroespacial":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-rocket");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Automotiva":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-car");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "TI":
         companieIcon.classList.add("fa-solid");
         companieIcon.classList.add("fa-computer");
-        companieIcon.classList.add("fa-2xl");
+        companieIcon.classList.add("fa-xl");
         break;
       case "Atacado":
         companieIcon.classList.add("fa-solid");
@@ -110,44 +92,6 @@ export class Render {
     li.append(companieName, companieDescription, divSector, companieOpen);
 
     return li;
-  }
-
-  // static somePartners(companie) {
-  //   const li = document.createElement("li");
-  //   const companieName = document.createElement("h3");
-  //   const companieDescription = document.createElement("p");
-  //   const companieSector = document.createElement("p");
-  //   const companieOpeningHour = document.createElement("span");
-
-  //   li.classList.add("slide");
-  //   companieName.innerText = companie.name;
-  //   companieName.classList.add("font-title-2");
-  //   companieDescription.innerText = companie.description;
-  //   companieDescription.classList.add("font-text-2");
-  //   companieDescription.classList.add("p__description");
-  //   companieSector.innerText = companie.sectors.description;
-  //   companieSector.classList.add("font-text-1");
-  //   companieOpeningHour.innerText = companie.opening_hours;
-  //   companieOpeningHour.classList.add("font-text-3");
-
-  //   li.append(
-  //     companieName,
-  //     companieDescription,
-  //     companieSector,
-  //     companieOpeningHour
-  //   );
-
-  //   return li;
-  // }
-
-  static renderSectorsOptions(uuid, description) {
-    const option = document.createElement("option");
-
-    option.innerText = description;
-    option.name = description;
-    option.id = uuid;
-
-    return option;
   }
 
   static renderUsers(user) {
@@ -220,14 +164,30 @@ export class Render {
     return li;
   }
 
-  static renderDepartmentsOptions(department) {
-    const option = document.createElement("option");
+  static renderDepartmentCardDescription(department) {
+    const departmentLi = document.createElement("li");
+    const divTitle = document.createElement("div");
+    const departmentTitle = document.createElement("h2");
+    const btnEditDepartment = document.createElement("button");
+    const iconEditDepartment = document.createElement("i");
+    const departmentDescription = document.createElement("p");
 
-    option.innerText = department.name;
-    option.name = department.name;
-    option.id = department.uuid;
+    departmentTitle.innerText = department.name;
+    departmentTitle.classList.add("font-title-2");
+    btnEditDepartment.classList.add("button-icon");
+    btnEditDepartment.classList.add("btnEditDepartment");
+    btnEditDepartment.setAttribute("id", department.uuid);
+    iconEditDepartment.classList.add("fa-solid");
+    iconEditDepartment.classList.add("fa-pen");
+    iconEditDepartment.classList.add("fa-xl");
+    departmentDescription.innerText = department.description;
+    departmentDescription.classList.add("font-text-1");
 
-    return option;
+    btnEditDepartment.appendChild(iconEditDepartment);
+    divTitle.append(departmentTitle, btnEditDepartment);
+    departmentLi.append(divTitle, departmentDescription);
+
+    return departmentLi;
   }
 
   static renderDepartmentCard(department) {
@@ -235,8 +195,11 @@ export class Render {
     const departmentTitle = document.createElement("h2");
     const departmentDescription = document.createElement("p");
 
+    departmentLi.classList.add("department-card");
+
     departmentTitle.innerText = department.name;
     departmentTitle.classList.add("font-title-2");
+
     departmentDescription.innerText = department.description;
     departmentDescription.classList.add("font-text-1");
 
@@ -245,12 +208,32 @@ export class Render {
     return departmentLi;
   }
 
+  static renderSectorsOptions(uuid, description) {
+    const option = document.createElement("option");
+
+    option.innerText = description;
+    option.name = description;
+    option.id = uuid;
+
+    return option;
+  }
+
   static renderCompaniesOptions(companie) {
     const option = document.createElement("option");
 
     option.innerText = companie.name;
     option.name = companie.name;
     option.id = companie.uuid;
+
+    return option;
+  }
+
+  static renderDepartmentsOptions(department) {
+    const option = document.createElement("option");
+
+    option.innerText = department.name;
+    option.name = department.name;
+    option.id = department.uuid;
 
     return option;
   }

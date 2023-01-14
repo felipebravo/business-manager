@@ -17,6 +17,11 @@
       type="text/css"
       href="../fontawesome/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <title>Departments - Kenzie Empresas</title>
   </head>
   <body>
@@ -111,7 +116,9 @@
               <label for="selectDepartment">Selecione o departamento</label>
               <select name="selectDepartment" id="selectDepartment"></select>
             </div>
-            <button class="button-alt font-text-2">Buscar</button>
+            <button class="button-alt font-text-2 btnSearchDepartByCompanie">
+              Buscar
+            </button>
           </form>
         </section>
         <section class="department__description">
@@ -119,25 +126,65 @@
             <h2 class="font-title-2">Departamentos</h2>
             <div>
               <label for="departmentoptions"
-                >Selecione o departamento para ver a descrição do mesmo</label
+                >Edite ou delete um departamento</label
               >
               <select name="departmentoptions" id="departmentoptions"></select>
             </div>
-            <div class="department__render"></div>
+            <div class="department__render hidden"></div>
             <button class="button-alt font-text-2">Buscar</button>
           </form>
+          <section class="edit__department hidden">
+            <form class="departments-forms">
+              <h2>Atualize ou delete o departamento</h2>
+              <div>
+                <div class="input-div">
+                  <input
+                    class="input-default"
+                    type="text"
+                    placeholder="Nome do departamento"
+                    disabled
+                  />
+                  <label class="label-default disable-label"></label>
+                </div>
+                <div class="input-div">
+                  <input
+                    class="input-default"
+                    type="text"
+                    id="newDescription"
+                    placeholder="Nova descrição do departamento"
+                  />
+                  <label class="label-default" for="newDescription"
+                    >Nova descrição do departamento</label
+                  >
+                </div>
+              </div>
+              <div>
+                <button
+                  class="button-default font-text-2 update-department"
+                  type="submit"
+                >
+                  Atualizar
+                </button>
+                <button class="button-icon delete-department">
+                  <i class="fa-solid fa-trash fa-2xl"></i>
+                </button>
+              </div>
+              <button class="button-close close-edit-section">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </form>
+          </section>
         </section>
         <section class="workers__by__department">
           <form class="departments-forms">
             <h2 class="font-title-2">Funcionários por departamento</h2>
             <div class="departments__companies">
               <label for="departoptions"
-                >Selecione o departamento para ver os funcionários do
-                mesmo</label
+                >Veja os funcionários de um departamento</label
               >
               <select name="departoptions" id="departoptions"></select>
             </div>
-            <button class="button-alt font-text-2">Buscar</button>
+            <button class="button-alt font-text-2 searchWorkers">Buscar</button>
           </form>
         </section>
       </div>
@@ -155,5 +202,10 @@
     </footer>
 
     <script type="module" src="../scripts/departments.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>

@@ -60,7 +60,7 @@ export class Sectors {
       sectionUl.innerText = "";
 
       res.forEach((companie) => {
-        const cardLi = Render.companieModalCard(companie);
+        const cardLi = Render.renderCompanieCard(companie);
 
         sectionUl.appendChild(cardLi);
       });

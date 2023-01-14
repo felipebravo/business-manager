@@ -144,60 +144,94 @@ export class Requests {
         }, 2000);
       })
       .catch((err) => {
-        console.log(err);
         Toast.create("Todos os campos são obrigatórios!", "red");
       });
 
     return newCompanie;
   }
 
-  static async createDepartment(body) {
-    const newDepartment = await fetch(`${this.baseUrl}departments`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
+  static async createDepartment(data) {
+    const newDepartment = await instance
+      .post("/departments", data)
       .then((res) => {
-        res.uuid ? alert("Departamento criado com sucesso!") : alert(res);
+        res.data.uuid &&
+          Toast.create("Departamento criado com sucesso!", "green");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Toast.create("Todos os campos são obrigatórios!", "red");
+      });
 
     return newDepartment;
   }
 
   static async allDepartments() {
-    const departments = await fetch(`${this.baseUrl}departments`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let allDepartments = "";
 
-    return departments;
+    await instance
+      .get("/departments")
+      .then((res) => {
+        allDepartments = res.data;
+      })
+      .catch((err) => console.error(err));
+
+    return allDepartments;
   }
 
   static async allDepartmentsByCompanie(uuid) {
-    const departsByCompanie = await fetch(
-      `${this.baseUrl}departments/${uuid}`,
-      {
-        method: "GET",
-        headers: this.headers,
-      }
-    )
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let departsByCompanie = "";
+
+    await instance
+      .get(`/departments/${uuid}`)
+      .then((res) => {
+        departsByCompanie = res.data;
+      })
+      .catch((err) => console.error(err));
 
     return departsByCompanie;
   }
 
+  static async editDepartment(uuid, data) {
+    await instance
+      .patch(`/departments/${uuid}`, data)
+      .then((res) => {
+        res.data.uuid &&
+          Toast.create("Departamento atualizado com sucesso!", "green");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, verifique as informações!", "red");
+      });
+  }
+
+  static async deleteDepartment(uuid) {
+    await instance
+      .delete(`/departments/${uuid}`)
+      .then((res) => {
+        Toast.create("Departamento deletado com sucesso!", "green");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      })
+      .catch((err) => Toast.create("Algo deu errado, tente novamente!", "red"));
+  }
+
   static async allWorkers() {
-    const allWorkers = await fetch(`${this.baseUrl}users`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let allWorkers = "";
+
+    await instance
+      .get("/users")
+      .then((res) => {
+        allWorkers = res.data;
+      })
+      .catch((err) => console.error(err));
 
     return allWorkers;
   }

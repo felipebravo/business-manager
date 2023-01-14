@@ -1,15 +1,15 @@
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
 
-export class Users {
-  // static handleDarkMode() {
-  //   const btnMode = document.querySelector(".dark-toggle");
-  //   const html = document.querySelector("html");
+class Users {
+  static handleDarkMode() {
+    const btnMode = document.querySelector(".dark-toggle");
+    const html = document.querySelector("html");
 
-  //   btnMode.addEventListener("click", () => {
-  //     html.classList.toggle("dark-mode");
-  //   });
-  // }
+    btnMode.addEventListener("click", () => {
+      html.classList.toggle("dark-mode");
+    });
+  }
 
   static headerNavigation() {
     const mobileMenu = document.querySelector(".mobile-menu");
@@ -123,11 +123,11 @@ export class Users {
     // });
   }
 
-  static async deleteWorker(uuid) {
-    await Requests.deleteWorker(uuid);
+  // static async deleteWorker(uuid) {
+  //   await Requests.deleteWorker(uuid);
 
-    Users.handleAllUsers();
-  }
+  //   Users.handleAllUsers();
+  // }
 
   static async handleUsersOutOfWork() {
     const section = document.querySelector(".available__employees");
@@ -158,10 +158,10 @@ export class Users {
   }
 }
 
-// Users.handleDarkMode();
-// Users.headerNavigation();
-// Users.handleAllUsers();
-// Users.hireFireWorker();
-// Users.editWorker();
-// Users.handleUsersOutOfWork();
-// Users.logout();
+Users.handleDarkMode();
+Users.headerNavigation();
+Users.handleAllUsers();
+Users.hireFireWorker();
+Users.editWorker();
+Users.handleUsersOutOfWork();
+Users.logout();

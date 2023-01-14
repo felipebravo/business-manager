@@ -1,5 +1,6 @@
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
+import { Toast } from "./toast.js";
 
 class Departments {
   static handleDarkMode() {
@@ -17,7 +18,6 @@ class Departments {
     const navLinks = document.querySelectorAll(".nav-list li");
 
     mobileMenu.addEventListener("click", () => {
-      console.log("oi");
       navList.classList.toggle("active");
       mobileMenu.classList.toggle("active");
       navLinks.forEach((link, index) => {
@@ -57,24 +57,27 @@ class Departments {
         company_uuid: selectOption.selectedOptions[0].id,
       };
 
-      const res = await Requests.createDepartment(data);
+      await Requests.createDepartment(data);
 
       newDepart.value = "";
       newDepartDescription.value = "";
-
-      Departments.handleDepartmentsByCompanie();
-      Departments.handleDepartmentDescription();
-      Departments.handleWorkersByDepartment();
     });
   }
 
   static async handleDepartmentsByCompanie() {
     const btnSearchDepartByCompanie = document.querySelector(
-      ".departments__by__companie form button"
+      ".btnSearchDepartByCompanie"
     );
+    const btnCloseDepartmentSection = document.querySelector(".close-section");
     const section = document.querySelector(".departments__results");
 
     const selectOption = document.getElementById("selectCompanie");
+
+    btnCloseDepartmentSection.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      section.classList.toggle("hidden");
+    });
 
     const allCompanies = await Requests.showAllCompanies();
 
@@ -135,6 +138,8 @@ class Departments {
       if (section.classList.contains("hidden")) {
         section.classList.toggle("hidden");
       }
+
+      Departments.closeSectionResults();
     });
   }
 
@@ -165,26 +170,94 @@ class Departments {
 
       allDepartments.forEach((department) => {
         if (selectOption.selectedOptions[0].innerText == department.name) {
-          const cardDepartment = Render.renderDepartmentCard(department);
+          const cardDepartment =
+            Render.renderDepartmentCardDescription(department);
+
+          if (div.classList.contains("hidden")) {
+            div.classList.toggle("hidden");
+          }
 
           div.innerText = "";
 
           div.appendChild(cardDepartment);
+
+          Departments.updateDepartmentDescription(
+            department.name,
+            department.uuid
+          );
         }
       });
     });
   }
 
+  static async updateDepartmentDescription(department, uuid) {
+    const btnEditDepartment = document.querySelector(".btnEditDepartment");
+    const btnCloseEditSection = document.querySelector(".close-edit-section");
+
+    const departmentDescriptionForm =
+      btnEditDepartment.parentNode.parentNode.parentNode.parentNode;
+    const sectionEditDepartment = document.querySelector(".edit__department");
+
+    const disableLabel = document.querySelector(".disable-label");
+
+    btnEditDepartment.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      departmentDescriptionForm.classList.toggle("hidden");
+      sectionEditDepartment.classList.toggle("hidden");
+
+      disableLabel.innerText = department;
+
+      Departments.handleDepartmentEdited(uuid);
+      Departments.handleDepartmentToDelete(uuid);
+    });
+
+    btnCloseEditSection.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      console.log(departmentDescriptionForm);
+      console.log(sectionEditDepartment);
+      departmentDescriptionForm.classList.toggle("hidden");
+      sectionEditDepartment.classList.toggle("hidden");
+    });
+  }
+
+  static async handleDepartmentEdited(uuid) {
+    const btnUpdateDepartment = document.querySelector(".update-department");
+
+    const descriptionInput = document.getElementById("newDescription");
+
+    btnUpdateDepartment.addEventListener("click", async (evt) => {
+      evt.preventDefault();
+
+      let data = {};
+
+      descriptionInput.value.length > 0 &&
+        ((data = {
+          description: descriptionInput.value,
+        }),
+        await Requests.editDepartment(uuid, data));
+    });
+  }
+
+  static async handleDepartmentToDelete(uuid) {
+    const btnDeleteDepartment = document.querySelector(".delete-department");
+
+    btnDeleteDepartment.addEventListener("click", async (evt) => {
+      evt.preventDefault();
+
+      await Requests.deleteDepartment(uuid);
+    });
+  }
+
   static async handleWorkersByDepartment() {
-    const sectionForm = document.querySelector(".workers__by__department form");
-    const btnSearch = document.querySelector(
-      ".workers__by__department form button"
+    const btnSearchWorkers = document.querySelector(".searchWorkers");
+    const sectionWorkersByDepartments = document.querySelector(
+      ".departments__results"
     );
-    const ulWorkers = document.createElement("ul");
+    const ulWorkers = document.querySelector(".departments__results div ul");
 
     const selectDepart = document.getElementById("departoptions");
 
-    selectDepart.innerText = "";
     const emptySelect = document.createElement("option");
     emptySelect.innerText = "Selecione o departamento";
     emptySelect.id = "0";
@@ -198,7 +271,7 @@ class Departments {
       selectDepart.appendChild(cardOption);
     });
 
-    btnSearch.addEventListener("click", async (evt) => {
+    btnSearchWorkers.addEventListener("click", async (evt) => {
       evt.preventDefault();
 
       const allWorkers = await Requests.allWorkers();
@@ -213,18 +286,20 @@ class Departments {
         }
       });
 
-      sectionForm.appendChild(ulWorkers);
+      if (sectionWorkersByDepartments.classList.contains("hidden")) {
+        sectionWorkersByDepartments.classList.toggle("hidden");
+      }
     });
   }
 
   static async closeSectionResults() {
-    const btnCloseSectionResults = document.querySelector(".button-close");
+    const btnCloseSectionResults = document.querySelector(".close-section");
     const section = document.querySelector(".departments__results");
 
     btnCloseSectionResults.addEventListener("click", (evt) => {
       evt.preventDefault();
 
-      section.classList.toggle("hidden");
+      section.classList.add("hidden");
     });
   }
 
@@ -247,5 +322,4 @@ Departments.createNewDepartment();
 Departments.handleDepartmentsByCompanie();
 Departments.handleDepartmentDescription();
 Departments.handleWorkersByDepartment();
-Departments.closeSectionResults();
 Departments.logout();

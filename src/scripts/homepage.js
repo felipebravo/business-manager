@@ -51,14 +51,14 @@ class HomePage {
   }
 
   static async allPartners() {
-    const ulSomePartners = document.querySelector(".all__partners");
+    const ulAllPartners = document.querySelector(".all__partners");
 
     const allCompanies = await Requests.showAllCompanies();
 
     allCompanies.forEach((partner, index) => {
-      const cardLi = Render.somePartners(partner);
+      const cardLi = Render.allPartnersHomePage(partner);
 
-      ulSomePartners.appendChild(cardLi);
+      ulAllPartners.appendChild(cardLi);
     });
   }
 

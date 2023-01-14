@@ -108,7 +108,7 @@ class Companies {
       const allCompanies = await Requests.showAllCompanies();
 
       allCompanies.forEach((companie) => {
-        const cardLi = Render.companieModalCard(companie);
+        const cardLi = Render.renderCompanieCard(companie);
 
         createdCompanies.appendChild(cardLi);
       });
@@ -144,7 +144,7 @@ class Companies {
               .toLowerCase()
               .includes(companieNameInput.value.toLowerCase())
           ) {
-            const cardLi = Render.companieModalCard(companie);
+            const cardLi = Render.renderCompanieCard(companie);
 
             createdCompanies.appendChild(cardLi);
           }
@@ -184,7 +184,7 @@ class Companies {
               .toLowerCase()
               .includes(sectorNameInput.value.toLowerCase())
           ) {
-            const cardLi = Render.companieModalCard(companie);
+            const cardLi = Render.renderCompanieCard(companie);
 
             createdCompanies.appendChild(cardLi);
           }
