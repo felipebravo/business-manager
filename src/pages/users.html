@@ -61,82 +61,28 @@
     </div>
     <main class="main__container">
       <section class="users">
-        <ul class="users__ul">
-          <div>
-            <div>
-              <i class="fa-solid fa-user-check fa-2xl"></i>
-              <span>Usuários disponíveis</span>
-            </div>
-            <div>
-              <i class="fa-solid fa-user-tie fa-2xl"></i>
-              <span>Usuários com contrato vigente</span>
-            </div>
+        <div class="users__options">
+          <div class="users__status">
+            <button class="button-icon">
+              <i class="fa-solid fa-user-check"></i>
+            </button>
+            <p>Disponíveis</p>
           </div>
-        </ul>
+          <div class="users__status">
+            <button class="button-icon">
+              <i class="fa-solid fa-user-tie"></i>
+            </button>
+            <p>Empregados</p>
+          </div>
+          <div class="users__status">
+            <button class="button-icon">
+              <i class="fa-solid fa-users"></i>
+            </button>
+            <p>Todos</p>
+          </div>
+        </div>
+        <ul class="users__ul"></ul>
       </section>
-      <section class="user__edition hidden">
-        <div></div>
-      </section>
-      <!-- <div>
-        <section class="edit__worker">
-          <form class="users__forms">
-            <h2 class="font-title-2">Editar funcionário</h2>
-            <div class="departments__companies">
-              <label for="employeename">Selecione o funcionário</label>
-              <select name="employeename" id="employeename">
-                <option id="0">Selecione o funcionário</option>
-              </select>
-            </div>
-            <div class="departments__companies">
-              <label for="worktype">Modalidade de trabalho</label>
-              <select name="worktype" id="worktype">
-                <option id="0">Selecione a modalidade</option>
-                <option id="homeoffice">Home Office</option>
-                <option id="presencial">Presencial</option>
-                <option id="hybrid">Hibrido</option>
-              </select>
-            </div>
-            <div class="departments__companies">
-              <label for="level">Nível</label>
-              <select name="level" id="level">
-                <option id="0">Selecione o nível</option>
-                <option id="estagiario">Estágio</option>
-                <option id="junior">Júnior</option>
-                <option id="pleno">Pleno</option>
-                <option id="senior">Sênior</option>
-              </select>
-            </div>
-            <button class="button-alt font-text-2">Editar</button>
-          </form>
-        </section>
-        <section class="hire__fire">
-          <form class="users__forms">
-            <h2 class="font-title-2">Contratar/Desligar</h2>
-            <div class="departments__companies">
-              <label for="workername">Selecione o funcionário</label>
-              <select name="workername" id="workername">
-                <option id="0">Selecione o funcionário</option>
-              </select>
-              <p class="font-text-1">E também</p>
-              <label for="departhiring">Selecione o departamento</label>
-              <select name="departhiring" id="departhiring">
-                <option id="0">Selecione o departamento</option>
-              </select>
-            </div>
-            <div>
-              <div class="hire__fire-buttons">
-                <button class="button-default font-text-2 hire">
-                  Contratar
-                </button>
-                <button class="button-default font-text-2 fire">Demitir</button>
-              </div>
-            </div>
-          </form>
-        </section>
-      </div>
-      <section class="available__employees">
-        <h2 class="font-title-2">Funcionários disponíveis</h2>
-      </section> -->
     </main>
     <footer class="font-text-3">
       <span>© Kenzie 2022 | Todos os direitos reservados</span>

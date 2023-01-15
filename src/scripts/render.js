@@ -112,9 +112,7 @@ export class Render {
     li.setAttribute("id", user.uuid);
     divUserStatus.classList.add("divUserStatus");
     divHandleUser.classList.add("divHandleUser");
-    userEdit.classList.add("fa-solid");
-    userEdit.classList.add("fa-pen");
-    userEdit.classList.add("fa-lg");
+
     userDelete.classList.add("fa-solid");
     userDelete.classList.add("fa-trash");
     userDelete.classList.add("fa-lg");
@@ -127,18 +125,27 @@ export class Render {
     userLevel.classList.add("font-text-1");
     userKindOfWork.innerText = user.kind_of_work;
     userKindOfWork.classList.add("font-text-1");
-
-    divUserData.append(userName, userLevel, userKindOfWork, userEmail);
+    btnDeleteUser.classList.add("button-delete");
 
     if (user.department_uuid == null) {
       userStatus.classList.add("fa-solid");
       userStatus.classList.add("fa-user-check");
       userStatus.classList.add("fa-2xl");
+      userEdit.classList.add("fa-solid");
+      userEdit.classList.add("fa-user-plus");
+      userEdit.classList.add("fa-lg");
+      btnEditUser.classList.add("button-hire");
     } else {
       userStatus.classList.add("fa-solid");
       userStatus.classList.add("fa-user-tie");
       userStatus.classList.add("fa-2xl");
+      userEdit.classList.add("fa-solid");
+      userEdit.classList.add("fa-user-minus");
+      userEdit.classList.add("fa-lg");
+      btnEditUser.classList.add("button-fire");
     }
+
+    divUserData.append(userName, userLevel, userKindOfWork, userEmail);
 
     btnEditUser.appendChild(userEdit);
     btnDeleteUser.appendChild(userDelete);
@@ -149,17 +156,55 @@ export class Render {
 
     li.append(divUserData, divUserStatus);
 
-    btnEditUser.addEventListener("click", (evt) => {
-      evt.preventDefault();
+    return li;
+  }
 
-      Users.editWorker(user.uuid);
-    });
+  static renderUsersByDepartment(user) {
+    const li = document.createElement("li");
+    const divUserData = document.createElement("div");
+    const divUserStatus = document.createElement("div");
+    const divHandleUser = document.createElement("div");
+    const btnEditUser = document.createElement("button");
+    const btnDismissUser = document.createElement("button");
+    const userEdit = document.createElement("i");
+    const userDismiss = document.createElement("i");
 
-    btnDeleteUser.addEventListener("click", (evt) => {
-      evt.preventDefault();
+    const userName = document.createElement("h2");
+    const userEmail = document.createElement("p");
+    const userLevel = document.createElement("p");
+    const userKindOfWork = document.createElement("p");
 
-      Users.deleteWorker(user.uuid);
-    });
+    li.setAttribute("id", user.uuid);
+    divUserStatus.classList.add("divUserStatus");
+    divHandleUser.classList.add("divHandleUser");
+    userEdit.classList.add("fa-solid");
+    userEdit.classList.add("fa-user-pen");
+    userEdit.classList.add("fa-2xl");
+    userDismiss.classList.add("fa-solid");
+    userDismiss.classList.add("fa-user-xmark");
+    userDismiss.classList.add("fa-2xl");
+    btnDismissUser.classList.add("button-dismiss");
+    btnEditUser.classList.add("button-edit");
+
+    userName.innerText = user.username;
+    userName.classList.add("font-title-2");
+    userEmail.innerText = user.email;
+    userEmail.classList.add("font-text-2");
+    userLevel.innerText = user.professional_level;
+    userLevel.classList.add("font-text-1");
+    userKindOfWork.innerText = user.kind_of_work;
+    userKindOfWork.classList.add("font-text-1");
+
+    divUserData.append(userName, userLevel, userKindOfWork, userEmail);
+
+    btnEditUser.appendChild(userEdit);
+    btnDismissUser.appendChild(userDismiss);
+
+    divHandleUser.append(btnEditUser, btnDismissUser);
+
+    divUserStatus.append(divHandleUser);
+
+    li.append(divUserData, divUserStatus);
 
     return li;
   }

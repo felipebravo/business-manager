@@ -1,7 +1,5 @@
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
-import { Toast } from "./toast.js";
-
 class Departments {
   static handleDarkMode() {
     const btnMode = document.querySelector(".dark-toggle");
@@ -276,21 +274,89 @@ class Departments {
 
       const allWorkers = await Requests.allWorkers();
 
+      const count = 0;
+
       ulWorkers.innerText = "";
 
       allWorkers.forEach((worker) => {
         if (worker.department_uuid == selectDepart.selectedOptions[0].id) {
-          const workerCard = Render.renderUsers(worker);
+          count += 1;
+
+          const workerCard = Render.renderUsersByDepartment(worker);
 
           ulWorkers.appendChild(workerCard);
         }
       });
 
+      if (count == 0) {
+        const emptyUl = document.createElement("h2");
+        emptyUl.innerText =
+          "Esse departamento ainda não possui nenhum funcionário";
+        ulWorkers.appendChild(emptyUl);
+      }
+
       if (sectionWorkersByDepartments.classList.contains("hidden")) {
         sectionWorkersByDepartments.classList.toggle("hidden");
       }
+
+      Departments.dismissWorker();
     });
   }
+
+  static async dismissWorker() {
+    const dismissWorkersBtns = document.querySelectorAll(".button-dismiss");
+    const sectionWorkersByDepartments = document.querySelector(
+      ".departments__results"
+    );
+
+    dismissWorkersBtns.forEach((button) => {
+      button.addEventListener("click", async (evt) => {
+        evt.preventDefault();
+
+        await Requests.fireWorker(button.closest("li").id);
+
+        sectionWorkersByDepartments.classList.toggle("hidden");
+      });
+    });
+  }
+
+  // static async editWorker(uuid) {
+  //   const section = document.querySelector(".user__edition");
+  //   const btnEdit = document.querySelector(".edit__worker button");
+  //   if (section.classList.contains("hidden")) {
+  //     section.classList.toggle("hidden");
+  //   }
+
+  //   const allWorkers = await Requests.allWorkers();
+
+  //   const selectWorker = document.getElementById("employeename");
+  //   const selectType = document.getElementById("worktype");
+  //   const selectLevel = document.getElementById("level");
+
+  //   function workersOptions(worker) {
+  //     const cardWorker = Render.renderWorkersOptions(worker);
+
+  //     selectWorker.appendChild(cardWorker);
+  //   }
+  //   allWorkers.forEach(workersOptions);
+
+  //   btnEdit.addEventListener("click", async (evt) => {
+  //     evt.preventDefault();
+
+  //     const data = {
+  //       kind_of_work: selectType.selectedOptions[0].innerText.toLowerCase(),
+  //       professional_level: selectLevel.selectedOptions[0].id,
+  //     };
+  //     console.log(data);
+  //     console.log(selectWorker.selectedOptions[0].id);
+  //     const res = await Requests.editWorker(
+  //       data,
+  //       selectWorker.selectedOptions[0].id
+  //     );
+
+  //     console.log(res);
+  //   });
+  // }
 
   static async closeSectionResults() {
     const btnCloseSectionResults = document.querySelector(".close-section");

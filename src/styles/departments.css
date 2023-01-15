@@ -121,6 +121,10 @@
   padding: 10px;
 
   overflow-y: auto;
+
+  color: var(--color-white);
+
+  text-align: center;
 }
 
 .departments__results > div > ul::-webkit-scrollbar {
@@ -160,15 +164,18 @@
 
 .divUserStatus {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--gap-5);
+  align-items: center;
 
   width: 50%;
   height: 80%;
 }
 
 .divHandleUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-5);
+
   width: 100%;
 
   text-align: end;

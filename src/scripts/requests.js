@@ -236,40 +236,6 @@ export class Requests {
     return allWorkers;
   }
 
-  static async hireWorker(body) {
-    const hireWorker = await fetch(`${this.baseUrl}departments/hire/`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        res.uuid ? alert("Funcionário contratado com sucesso!") : alert(res);
-      })
-      .catch((err) => console.log(err));
-
-    return hireWorker;
-  }
-
-  static async fireWorker(uuid) {
-    const fireWorker = await fetch(
-      `${this.baseUrl}departments/dismiss/${uuid}`,
-      {
-        method: "PATCH",
-        headers: this.headers,
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        res.department_uuid == null
-          ? alert("Funcionário demitido com sucesso!")
-          : alert(res);
-      })
-      .catch((err) => console.log(err));
-
-    return fireWorker;
-  }
-
   static async editWorker(body, uuid) {
     const workerEdited = await fetch(
       `${this.baseUrl}admin/update_user/${uuid}`,
@@ -288,16 +254,6 @@ export class Requests {
     return workerEdited;
   }
 
-  static async deleteWorker(uuid) {
-    await fetch(`${this.baseUrl}admin/delete_user/${uuid}`, {
-      method: "DELETE",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .then(alert("Deletado"))
-      .catch((err) => console.log(err));
-  }
-
   static async usersOutOfWork() {
     const outOfWork = await fetch(`${this.baseUrl}admin/out_of_work`, {
       method: "GET",
@@ -307,5 +263,40 @@ export class Requests {
       .catch((err) => console.log(err));
 
     return outOfWork;
+  }
+
+  static async hireWorker(data) {
+    await instance
+      .patch("/departments/hire/", data)
+      .then((res) => {
+        res.data.uuid &&
+          Toast.create("Usuário contratado com sucesso!", "green");
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, tente novamente!", "red");
+      });
+  }
+
+  static async fireWorker(uuid) {
+    await instance
+      .patch(`/departments/dismiss/${uuid}`)
+      .then((res) => {
+        res.data.department_uuid == null &&
+          Toast.create("Usuário desligado com sucesso!", "green");
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, tente novamente!", "red");
+      });
+  }
+
+  static async deleteWorker(uuid) {
+    await instance
+      .delete(`admin/delete_user/${uuid}`)
+      .then((res) => {
+        Toast.create("Usuário deletado com sucesso!", "green");
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, tente novamente!", "red");
+      });
   }
 }
