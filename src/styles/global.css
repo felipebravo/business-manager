@@ -25,13 +25,13 @@ a {
 
 :root {
   /*  Colors */
-  --color-white: #ececec;
-  --color-black: #00040e;
-  --color-black-op: #00040e90;
-  --light-blue: #717e9b;
+  --color-black: #ececec;
+  --color-white: #00040e;
+  --color-black-op: #ececec70;
+  --light-blue: #071b48;
   --primary-blue: #2e4372;
-  --dark-blue: #071b48;
-  --ball-transition: translateX(0px);
+  --dark-blue: #717e9b;
+  --ball-transition: translateX(-5px);
 
   /*  Text Sizes */
   --font-title-1: 32px;
@@ -65,13 +65,13 @@ a {
 }
 
 .dark-mode:root {
-  --color-black: #ececec;
-  --color-white: #00040e;
-  --color-black-op: #ececec70;
-  --light-blue: #071b48;
+  --color-white: #ececec;
+  --color-black: #00040e;
+  --color-black-op: #00040e90;
+  --light-blue: #717e9b;
   --primary-blue: #2e4372;
-  --dark-blue: #717e9b;
-  --ball-transition: translateX(21px);
+  --dark-blue: #071b48;
+  --ball-transition: translateX(25px);
 
   /*  Text Sizes */
   --font-title-1: 32px;
