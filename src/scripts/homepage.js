@@ -2,6 +2,11 @@ import { Render } from "./render.js";
 import { Requests } from "./requests.js";
 
 class HomePage {
+  static async handleMode() {
+    const html = document.querySelector("html");
+
+    html.classList.toggle("dark-mode");
+  }
   static async login() {
     const token = localStorage.getItem("@kenzieCompanies:token");
 
@@ -109,6 +114,7 @@ class HomePage {
   }
 }
 
+HomePage.handleMode();
 HomePage.login();
 HomePage.seeLoginPass();
 HomePage.signup();

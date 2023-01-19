@@ -63,6 +63,7 @@
 .users__ul::-webkit-scrollbar {
   background-color: var(--dark-blue);
   width: 5px;
+  height: 5px;
   border-radius: var(--border-radius-0);
 }
 
@@ -77,7 +78,7 @@
   justify-content: space-between;
 
   min-width: 80%;
-  height: 200px;
+  min-height: 200px;
   padding: 20px;
 
   border: 1px solid var(--light-blue);
@@ -164,5 +165,41 @@
 
   .users__ul > li {
     min-width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .user-info > span {
+    display: none;
+  }
+
+  .users__options {
+    gap: var(--gap-1);
+  }
+
+  .users__ul {
+    flex-direction: row;
+
+    overflow-x: auto;
+  }
+
+  .users__ul > li {
+    flex-direction: column;
+
+    min-width: 100%;
+  }
+
+  .divUserData {
+    width: 100%;
+  }
+
+  .divUserStatus {
+    flex-direction: row;
+
+    width: 100%;
+  }
+
+  .divHandleUser {
+    display: flex;
   }
 }

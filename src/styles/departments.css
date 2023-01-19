@@ -319,6 +319,14 @@
   }
 }
 
+@media (max-width: 970px) {
+  .content__modal {
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+  }
+}
+
 @media (max-width: 760px) {
   .departments__results > div > ul > li {
     min-width: 220px;
