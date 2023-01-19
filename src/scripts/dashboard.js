@@ -79,16 +79,16 @@ class Dashboard {
     const userDepartment = document.querySelector(".userDepartment");
     const userWork = document.querySelector(".userWork");
 
+    const coWorkers = await Requests.coWorkers();
+
     userEmail.innerText = userInfo.email;
     userLevel.innerText = userInfo.professional_level;
     userInfo.department_uuid
-      ? (userDepartment.innerText = userInfo.department_uuid)
+      ? (userDepartment.innerText = coWorkers[0].name)
       : (userDepartment.innerText = "Você ainda não possui um departamento.");
     userInfo.kind_of_work
       ? (userWork.innerText = userInfo.kind_of_work)
       : (userWork.innerText = "Você ainda não possui essa informação.");
-
-    const coWorkers = await Requests.coWorkers();
 
     const ulCoWorkers = document.querySelector(".coWorkers");
     const emptyCoWorkers = document.createElement("h3");
@@ -97,8 +97,8 @@ class Dashboard {
       "Você ainda não possui companheiros de trabalho.";
 
     coWorkers.length > 0
-      ? coWorkers.forEach((worker) => {
-          const coWorkersCard = Render.renderUsers(worker);
+      ? coWorkers[0].users.forEach((worker) => {
+          const coWorkersCard = Render.renderCoWorkers(worker);
 
           ulCoWorkers.appendChild(coWorkersCard);
         })
@@ -114,8 +114,12 @@ class Dashboard {
 
     emptyDepartments.innerText = "Você ainda não faz parte de uma empresa.";
 
-    departmentsOfUserCompanie.length > 0
-      ? departmentsOfUserCompanie.forEach((department) => {})
+    departmentsOfUserCompanie.departments
+      ? departmentsOfUserCompanie.departments.forEach((department) => {
+          const departmentCard = Render.renderDepartmentCard(department);
+
+          ulCompanieDepartments.appendChild(departmentCard);
+        })
       : ulCompanieDepartments.appendChild(emptyDepartments);
   }
 

@@ -96,21 +96,87 @@
 .coWorkers {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--gap-1);
 
-  height: 80%;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+
+  overflow-x: auto;
 
   text-align: center;
+}
+
+.coWorkers::-webkit-scrollbar {
+  background-color: var(--dark-blue);
+  height: 5px;
+  border-radius: var(--border-radius-0);
+}
+
+.coWorkers::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue);
+  border-radius: var(--border-radius-0);
+}
+
+.coWorkers > h3 {
+  width: 100%;
+}
+
+.coWorkers > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: 180px;
+  height: 130px;
+  padding: 10px;
+
+  border: 1px solid var(--light-blue);
+  border-radius: var(--border-radius-0);
 }
 
 .companieDepartments {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--gap-1);
 
-  height: 80%;
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+
+  overflow-x: auto;
 
   text-align: center;
+}
+
+.companieDepartments::-webkit-scrollbar {
+  background-color: var(--dark-blue);
+  height: 5px;
+  border-radius: var(--border-radius-0);
+}
+
+.companieDepartments::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue);
+  border-radius: var(--border-radius-0);
+}
+
+.companieDepartments > h3 {
+  width: 100%;
+}
+
+.department-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  min-width: 250px;
+  height: 130px;
+  padding: 10px;
+
+  border: 1px solid var(--light-blue);
+  border-radius: var(--border-radius-0);
 }
 
 .bg__modal {

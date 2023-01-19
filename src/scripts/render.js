@@ -160,6 +160,29 @@ export class Render {
     return li;
   }
 
+  static renderCoWorkers(user) {
+    const li = document.createElement("li");
+    const userName = document.createElement("h2");
+    const userEmail = document.createElement("p");
+    const userLevel = document.createElement("p");
+    const userKindOfWork = document.createElement("p");
+
+    li.setAttribute("id", user.uuid);
+
+    userName.innerText = user.username;
+    userName.classList.add("font-title-2");
+    userEmail.innerText = user.email;
+    userEmail.classList.add("font-text-2");
+    userLevel.innerText = user.professional_level;
+    userLevel.classList.add("font-text-1");
+    userKindOfWork.innerText = user.kind_of_work;
+    userKindOfWork.classList.add("font-text-1");
+
+    li.append(userName, userLevel, userKindOfWork, userEmail);
+
+    return li;
+  }
+
   static renderUsersByDepartment(user) {
     const li = document.createElement("li");
     const divUserData = document.createElement("div");
