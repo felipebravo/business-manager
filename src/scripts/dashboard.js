@@ -6,8 +6,20 @@ class Dashboard {
     const btnMode = document.querySelector(".dark-toggle");
     const html = document.querySelector("html");
 
+    if (localStorage.getItem("@kenzieCompanies:dark__mode") == "true") {
+      if (!html.classList.contains("dark-mode")) {
+        html.classList.toggle("dark-mode");
+      }
+    }
+
     btnMode.addEventListener("click", () => {
-      html.classList.toggle("dark-mode");
+      if (localStorage.getItem("@kenzieCompanies:dark__mode") == "false") {
+        html.classList.add("dark-mode");
+        localStorage.setItem("@kenzieCompanies:dark__mode", true);
+      } else {
+        html.classList.remove("dark-mode");
+        localStorage.setItem("@kenzieCompanies:dark__mode", false);
+      }
     });
   }
 

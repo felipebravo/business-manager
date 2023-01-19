@@ -15,6 +15,7 @@ export class Requests {
       .then((res) => {
         localStorage.setItem("@kenzieCompanies:token", res.data.token);
         localStorage.setItem("@kenzieCompanies:user__uuid", res.data.uuid);
+        localStorage.setItem("@kenzieCompanies:dark__mode", false);
         res.data.token != "undefined" &&
           res.data.token &&
           (window.location.href = "./src/pages/dashboard.html");
