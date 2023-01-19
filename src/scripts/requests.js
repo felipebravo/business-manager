@@ -255,12 +255,14 @@ export class Requests {
   }
 
   static async usersOutOfWork() {
-    const outOfWork = await fetch(`${this.baseUrl}admin/out_of_work`, {
-      method: "GET",
-      headers: this.headers,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    let outOfWork = "";
+
+    await instance
+      .get("/admin/out_of_work")
+      .then((res) => {
+        outOfWork = res.data;
+      })
+      .catch((err) => console.error(err));
 
     return outOfWork;
   }

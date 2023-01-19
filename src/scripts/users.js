@@ -47,6 +47,68 @@ class Users {
     Users.deleteWorker();
   }
 
+  static async handleUsersOutOfWork() {
+    const ulAllUsers = document.querySelector(".users__ul");
+
+    ulAllUsers.innerText = "";
+
+    const allUsersOutOfWork = await Requests.usersOutOfWork();
+
+    allUsersOutOfWork.forEach((user) => {
+      const userCard = Render.renderUsers(user);
+
+      ulAllUsers.appendChild(userCard);
+    });
+
+    Users.hireWorker();
+    Users.fireWorker();
+    Users.deleteWorker();
+  }
+
+  static async handleEmployeedsUsers() {
+    const ulAllUsers = document.querySelector(".users__ul");
+
+    ulAllUsers.innerText = "";
+
+    const allUsers = await Requests.allWorkers();
+
+    allUsers.forEach((worker) => {
+      if (worker.department_uuid != null) {
+        const userCard = Render.renderUsers(worker);
+
+        ulAllUsers.appendChild(userCard);
+      }
+    });
+
+    Users.hireWorker();
+    Users.fireWorker();
+    Users.deleteWorker();
+  }
+
+  static async filterWorkers() {
+    const btnAvailableUsers = document.querySelector(".available__users");
+    const btnEmployeedsUsers = document.querySelector(".employeeds__users");
+    const btnAllUsers = document.querySelector(".all__users");
+
+    btnAvailableUsers.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      Users.handleUsersOutOfWork();
+    });
+
+    btnEmployeedsUsers.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      Users.handleEmployeedsUsers();
+    });
+
+    btnAllUsers.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      Users.handleAllUsers();
+    });
+  }
+
   static async hireWorker() {
     const hireWorkersBtns = document.querySelectorAll(".button-hire");
     const formChooseDepartment = document.querySelector(".form__hireWorker");
@@ -137,22 +199,6 @@ class Users {
     });
   }
 
-  // static async handleUsersOutOfWork() {
-  //   const section = document.querySelector(".available__employees");
-
-  //   const ulUsersOutOfWork = document.createElement("ul");
-
-  //   const allUsersOutOfWork = await Requests.usersOutOfWork();
-
-  //   allUsersOutOfWork.forEach((user) => {
-  //     const userCard = Render.renderUsers(user);
-
-  //     ulUsersOutOfWork.appendChild(userCard);
-  //   });
-
-  //   section.appendChild(ulUsersOutOfWork);
-  // }
-
   static logout() {
     const btnLogout = document.querySelector(".logout");
 
@@ -169,4 +215,5 @@ class Users {
 Users.handleDarkMode();
 Users.headerNavigation();
 Users.handleAllUsers();
+Users.filterWorkers();
 Users.logout();
