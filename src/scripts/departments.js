@@ -311,7 +311,45 @@ class Departments {
         sectionWorkersByDepartments.classList.toggle("hidden");
       }
 
+      Departments.editWorker();
       Departments.dismissWorker();
+    });
+  }
+
+  static async editWorker() {
+    const editWorkersBtns = document.querySelectorAll(".button-edit");
+    const modalEditUser = document.querySelector(".bg__modal");
+    const btnSubmitUserUpdate = document.querySelector(".submitUpdate");
+    const btnCloseModal = document.querySelector(".close-modal");
+
+    const kindOfWork = document.getElementById("kind_of_work");
+    const proLevel = document.getElementById("professional_level");
+
+    editWorkersBtns.forEach((button) => {
+      button.addEventListener("click", (evt) => {
+        evt.preventDefault();
+
+        if (modalEditUser.classList.contains("hidden")) {
+          modalEditUser.classList.toggle("hidden");
+        }
+
+        btnSubmitUserUpdate.addEventListener("click", async (evt) => {
+          evt.preventDefault();
+
+          const data = {
+            kind_of_work: kindOfWork.selectedOptions[0].value,
+            professional_level: proLevel.selectedOptions[0].value,
+          };
+
+          await Requests.editWorker(data, button.closest("li").id);
+        });
+      });
+    });
+
+    btnCloseModal.addEventListener("click", (evt) => {
+      evt.preventDefault();
+
+      modalEditUser.classList.toggle("hidden");
     });
   }
 
@@ -331,44 +369,6 @@ class Departments {
       });
     });
   }
-
-  // static async editWorker(uuid) {
-  //   const section = document.querySelector(".user__edition");
-  //   const btnEdit = document.querySelector(".edit__worker button");
-  //   if (section.classList.contains("hidden")) {
-  //     section.classList.toggle("hidden");
-  //   }
-
-  //   const allWorkers = await Requests.allWorkers();
-
-  //   const selectWorker = document.getElementById("employeename");
-  //   const selectType = document.getElementById("worktype");
-  //   const selectLevel = document.getElementById("level");
-
-  //   function workersOptions(worker) {
-  //     const cardWorker = Render.renderWorkersOptions(worker);
-
-  //     selectWorker.appendChild(cardWorker);
-  //   }
-  //   allWorkers.forEach(workersOptions);
-
-  //   btnEdit.addEventListener("click", async (evt) => {
-  //     evt.preventDefault();
-
-  //     const data = {
-  //       kind_of_work: selectType.selectedOptions[0].innerText.toLowerCase(),
-  //       professional_level: selectLevel.selectedOptions[0].id,
-  //     };
-  //     console.log(data);
-  //     console.log(selectWorker.selectedOptions[0].id);
-  //     const res = await Requests.editWorker(
-  //       data,
-  //       selectWorker.selectedOptions[0].id
-  //     );
-
-  //     console.log(res);
-  //   });
-  // }
 
   static async closeSectionResults() {
     const btnCloseSectionResults = document.querySelector(".close-section");

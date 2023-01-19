@@ -237,22 +237,20 @@ export class Requests {
     return allWorkers;
   }
 
-  static async editWorker(body, uuid) {
-    const workerEdited = await fetch(
-      `${this.baseUrl}admin/update_user/${uuid}`,
-      {
-        method: "PATCH",
-        headers: this.headers,
-        body: JSON.stringify(body),
-      }
-    )
-      .then((res) => res.json())
+  static async editWorker(data, uuid) {
+    await instance
+      .patch(`/admin/update_user/${uuid}`, data)
       .then((res) => {
-        res.uuid ? alert("Alteração realizada com sucesso") : alert(res[0]);
-      })
-      .catch((err) => console.log(err));
+        res.data.uuid &&
+          Toast.create("Usuário atualizado com sucesso!", "green");
 
-    return workerEdited;
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      })
+      .catch((err) => {
+        Toast.create("Algo deu errado, tente novamente!", "red");
+      });
   }
 
   static async usersOutOfWork() {

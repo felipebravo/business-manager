@@ -196,6 +196,44 @@
           </button>
         </div>
       </section>
+      <div class="bg__modal hidden">
+        <div class="content__modal">
+          <form class="update_user_form">
+            <div>
+              <h2>Atualize os dados do funcionário</h2>
+              <p>Todos as opções são obrigatórias</p>
+            </div>
+            <div class="select-edit-user">
+              <label for="kind_of_work"
+                >Selecione uma modalidade de trabalho</label
+              >
+              <select name="kind_of_work" id="kind_of_work">
+                <option value="home office">Home Office</option>
+                <option value="hibrido">Híbrido</option>
+                <option value="presencial">Presencial</option>
+              </select>
+            </div>
+            <div class="select-edit-user">
+              <label for="professional_level">Selecione o nível</label>
+              <select name="professional_level" id="professional_level">
+                <option value="estágio">Estágiario</option>
+                <option value="júnior">Júnior</option>
+                <option value="pleno">Pleno</option>
+                <option value="sênior">Sênior</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="submitUpdate font-text-2 button-default"
+            >
+              Atualizar
+            </button>
+          </form>
+          <button class="button-close close-modal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
     </main>
     <footer class="font-text-3">
       <span>© Kenzie 2022 | Todos os direitos reservados</span>
