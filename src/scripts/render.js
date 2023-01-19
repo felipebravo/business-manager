@@ -110,6 +110,7 @@ export class Render {
     const userKindOfWork = document.createElement("p");
 
     li.setAttribute("id", user.uuid);
+    divUserData.classList.add("divUserData");
     divUserStatus.classList.add("divUserStatus");
     divHandleUser.classList.add("divHandleUser");
 

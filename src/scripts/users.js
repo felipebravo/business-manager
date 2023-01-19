@@ -49,16 +49,58 @@ class Users {
 
   static async hireWorker() {
     const hireWorkersBtns = document.querySelectorAll(".button-hire");
+    const formChooseDepartment = document.querySelector(".form__hireWorker");
+    const btnSubmitHire = document.querySelector(".submit-hire");
+    const btnCloseHireForm = document.querySelector(".close-hire-form");
+
+    const selectDepart = document.getElementById("selectDepartment");
+
+    selectDepart.innerText = "";
+    const emptySelect = document.createElement("option");
+    emptySelect.innerText = "Selecione o departamento";
+    emptySelect.id = "0";
+    selectDepart.appendChild(emptySelect);
+
+    const allDepartments = await Requests.allDepartments();
+
+    allDepartments.forEach((department) => {
+      const cardOption = Render.renderDepartmentsOptions(department);
+
+      selectDepart.appendChild(cardOption);
+    });
 
     hireWorkersBtns.forEach((button) => {
-      button.addEventListener("click", async (evt) => {
+      button.addEventListener("click", (evt) => {
         evt.preventDefault();
 
-        await Requests.hireWorker(button.closest("li").id);
+        button.closest(".divUserStatus").classList.toggle("hidden");
+        button.closest("li").appendChild(formChooseDepartment);
+        formChooseDepartment.classList.toggle("hidden");
 
-        setTimeout(() => {
-          Users.handleAllUsers();
-        }, 1500);
+        btnCloseHireForm.addEventListener("click", (evt) => {
+          evt.preventDefault();
+
+          button.closest("li").removeChild(formChooseDepartment);
+          formChooseDepartment.classList.toggle("hidden");
+          button.closest(".divUserStatus").classList.toggle("hidden");
+        });
+
+        btnSubmitHire.addEventListener("click", async (evt) => {
+          evt.preventDefault();
+
+          if (selectDepart.selectedOptions[0].id != 0) {
+            const data = {
+              user_uuid: button.closest("li").id,
+              department_uuid: selectDepart.selectedOptions[0].id,
+            };
+
+            await Requests.hireWorker(data);
+
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+          }
+        });
       });
     });
   }

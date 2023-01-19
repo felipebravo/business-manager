@@ -274,7 +274,7 @@ class Departments {
 
       const allWorkers = await Requests.allWorkers();
 
-      const count = 0;
+      let count = 0;
 
       ulWorkers.innerText = "";
 

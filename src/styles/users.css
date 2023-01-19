@@ -120,6 +120,38 @@
   opacity: 1;
 }
 
+.form__hireWorker {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-1);
+
+  width: 50%;
+}
+
+.form__hireWorker > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__hireWorker > div > select {
+  height: 1.8rem;
+  width: 98%;
+  padding: 0 5px;
+
+  border-radius: var(--border-radius-0);
+  color: var(--dark-blue);
+}
+
+.close-hire-form {
+  position: absolute;
+  right: -10px;
+  top: -15px;
+}
+
 @media (max-width: 630px) {
   .users {
     width: 90%;
