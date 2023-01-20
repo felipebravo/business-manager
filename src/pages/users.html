@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/users.css" />
+    <link rel="stylesheet" href="../styles/pages.css/users.css" />
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/input.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="stylesheet" href="../styles/select.css" />
+    <link rel="stylesheet" href="../styles/scrollbar.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -81,14 +83,18 @@
             <p>Todos</p>
           </div>
         </div>
-        <ul class="users__ul"></ul>
+        <ul class="users__ul scrollbar-default"></ul>
         <form class="form__hireWorker hidden">
           <button class="button-icon close-hire-form">
             <i class="fa-solid fa-xmark"></i>
           </button>
           <div>
             <label for="selectDepartment">Selecione o departamento</label>
-            <select name="selectDepartment" id="selectDepartment"></select>
+            <select
+              name="selectDepartment"
+              id="selectDepartment"
+              class="select-default"
+            ></select>
           </div>
           <button type="submit" class="button-default submit-hire">
             Contratar

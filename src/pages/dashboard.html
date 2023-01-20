@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="DashBoard" />
-    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="../styles/pages.css/dashboard.css" />
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/input.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="stylesheet" href="../styles/scrollbar.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -124,11 +125,11 @@
         </div>
         <div class="not-admin-info">
           <h2>Funcionários do departamento</h2>
-          <ul class="coWorkers"></ul>
+          <ul class="coWorkers scrollbar-default"></ul>
         </div>
         <div class="not-admin-info">
           <h2>Departamentos da empresa</h2>
-          <ul class="companieDepartments"></ul>
+          <ul class="companieDepartments scrollbar-default"></ul>
         </div>
         <div class="bg__modal hidden">
           <div class="content__modal">
@@ -179,7 +180,7 @@
                 </button>
               </div>
             </form>
-            <button class="button-close">
+            <button class="button-close close-modal">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>

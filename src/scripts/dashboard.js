@@ -1,3 +1,4 @@
+import { Modal } from "./modal.js";
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
 
@@ -125,16 +126,12 @@ class Dashboard {
 
   static async handleEditUser() {
     const btnEditUser = document.querySelector(".btnEditUser");
-    const modalEditUser = document.querySelector(".bg__modal");
     const btnSubmitUserUpdate = document.querySelector(".submitUpdate");
-    const btnCloseModal = document.querySelector(".button-close");
 
     btnEditUser.addEventListener("click", (evt) => {
       evt.preventDefault();
 
-      if (modalEditUser.classList.contains("hidden")) {
-        modalEditUser.classList.toggle("hidden");
-      }
+      Modal.handleModal();
     });
 
     const userInput = document.getElementById("username");
@@ -151,12 +148,6 @@ class Dashboard {
       passInput.value.length > 0 && (data.password = passInput.value);
 
       await Requests.updateUserInfo(data);
-    });
-
-    btnCloseModal.addEventListener("click", (evt) => {
-      evt.preventDefault();
-
-      modalEditUser.classList.toggle("hidden");
     });
   }
 

@@ -54,7 +54,7 @@ class Companies {
         sectionCreatedCompanies.classList.toggle("hidden");
       }
 
-      Modal.showCompaniesModal();
+      Modal.handleModal();
 
       const btnCreate = document.querySelector(".submitNewCo");
       const newCompanieName = document.getElementById("companiename");

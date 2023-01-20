@@ -1,7 +1,7 @@
 export class Modal {
-  static showCompaniesModal() {
+  static handleModal() {
     const companiesModal = document.querySelector(".bg__modal");
-    const btnCloseModal = document.querySelector(".button-close");
+    const btnCloseModal = document.querySelector(".close-modal");
 
     companiesModal.classList.remove("hidden");
 

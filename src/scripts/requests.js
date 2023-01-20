@@ -2,13 +2,6 @@ import { instance } from "./axios.js";
 import { Toast } from "./toast.js";
 
 export class Requests {
-  static baseUrl = "http://localhost:6278/";
-  static token = localStorage.getItem("@kenzieCompanies:token") || "";
-  static headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${this.token}`,
-  };
-
   static async login(data) {
     const userLogin = await instance
       .post("/auth/login", data)

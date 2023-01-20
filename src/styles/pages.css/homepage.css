@@ -1,4 +1,4 @@
-.main__container {
+.main__container__homepage {
   position: relative;
 
   perspective: 1px;
@@ -22,7 +22,7 @@
 
   transform: translateZ(-1px) scale(2);
 
-  background: url("../assets/bg-city.svg");
+  background: url("../../assets/bg-city.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-origin: content-box;

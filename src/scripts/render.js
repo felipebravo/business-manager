@@ -306,14 +306,4 @@ export class Render {
 
     return option;
   }
-
-  static renderWorkersOptions(worker) {
-    const option = document.createElement("option");
-
-    option.innerText = worker.username;
-    option.name = worker.username;
-    option.id = worker.uuid;
-
-    return option;
-  }
 }

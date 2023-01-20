@@ -1,18 +1,5 @@
 .main__container {
-  position: relative;
-
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-
-  height: 80vh;
-
-  background-image: url("../assets/bg-dash.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-origin: content-box;
 }
 
 .main__form {
@@ -35,14 +22,6 @@
   text-align: center;
 }
 
-.main__form > div > select {
-  height: 30px;
-  padding: 0 5px;
-
-  border-radius: var(--border-radius-0);
-  color: var(--dark-blue);
-}
-
 .companies {
   display: flex;
   justify-content: center;
@@ -63,17 +42,6 @@
   overflow-y: auto;
 }
 
-.companies__ul::-webkit-scrollbar {
-  background-color: var(--dark-blue);
-  width: 5px;
-  border-radius: var(--border-radius-0);
-}
-
-.companies__ul::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue);
-  border-radius: var(--border-radius-0);
-}
-
 .companies__ul > li {
   display: flex;
   flex-direction: column;
@@ -92,17 +60,6 @@
 
   color: var(--color-white);
   text-align: center;
-}
-
-.companies__ul > li::-webkit-scrollbar {
-  background-color: var(--dark-blue);
-  width: 5px;
-  border-radius: var(--border-radius-0);
-}
-
-.companies__ul > li::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue);
-  border-radius: var(--border-radius-0);
 }
 
 .companies__ul > li > div {
@@ -128,12 +85,6 @@
 
   .companies__ul > li {
     width: 90%;
-  }
-}
-
-@media (max-width: 390px) {
-  .user-info > span {
-    display: none;
   }
 }
 

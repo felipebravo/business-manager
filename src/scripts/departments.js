@@ -1,3 +1,4 @@
+import { Modal } from "./modal.js";
 import { Render } from "./render.js";
 import { Requests } from "./requests.js";
 class Departments {
@@ -318,9 +319,7 @@ class Departments {
 
   static async editWorker() {
     const editWorkersBtns = document.querySelectorAll(".button-edit");
-    const modalEditUser = document.querySelector(".bg__modal");
     const btnSubmitUserUpdate = document.querySelector(".submitUpdate");
-    const btnCloseModal = document.querySelector(".close-modal");
 
     const kindOfWork = document.getElementById("kind_of_work");
     const proLevel = document.getElementById("professional_level");
@@ -329,9 +328,7 @@ class Departments {
       button.addEventListener("click", (evt) => {
         evt.preventDefault();
 
-        if (modalEditUser.classList.contains("hidden")) {
-          modalEditUser.classList.toggle("hidden");
-        }
+        Modal.handleModal();
 
         btnSubmitUserUpdate.addEventListener("click", async (evt) => {
           evt.preventDefault();
@@ -344,12 +341,6 @@ class Departments {
           await Requests.editWorker(data, button.closest("li").id);
         });
       });
-    });
-
-    btnCloseModal.addEventListener("click", (evt) => {
-      evt.preventDefault();
-
-      modalEditUser.classList.toggle("hidden");
     });
   }
 

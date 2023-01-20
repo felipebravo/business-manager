@@ -1,18 +1,3 @@
-.main__container {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 80vh;
-
-  background-image: url("../assets/bg-dash.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-}
-
 .admin-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -107,17 +92,6 @@
   text-align: center;
 }
 
-.coWorkers::-webkit-scrollbar {
-  background-color: var(--dark-blue);
-  height: 5px;
-  border-radius: var(--border-radius-0);
-}
-
-.coWorkers::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue);
-  border-radius: var(--border-radius-0);
-}
-
 .coWorkers > h3 {
   width: 100%;
 }
@@ -148,17 +122,6 @@
   overflow-x: auto;
 
   text-align: center;
-}
-
-.companieDepartments::-webkit-scrollbar {
-  background-color: var(--dark-blue);
-  height: 5px;
-  border-radius: var(--border-radius-0);
-}
-
-.companieDepartments::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue);
-  border-radius: var(--border-radius-0);
 }
 
 .companieDepartments > h3 {
@@ -278,10 +241,6 @@
 }
 
 @media (max-width: 390px) {
-  .user-info > span {
-    display: none;
-  }
-
   .admin-options > li > a > h3 {
     display: none;
   }

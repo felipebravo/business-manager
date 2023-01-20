@@ -1,19 +1,3 @@
-.main__container {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-
-  height: 80vh;
-
-  background-image: url("../assets/bg-dash.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-}
-
 .users {
   display: flex;
   flex-direction: column;
@@ -58,18 +42,6 @@
   overflow-y: auto;
 
   color: var(--color-white);
-}
-
-.users__ul::-webkit-scrollbar {
-  background-color: var(--dark-blue);
-  width: 5px;
-  height: 5px;
-  border-radius: var(--border-radius-0);
-}
-
-.users__ul::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue);
-  border-radius: var(--border-radius-0);
 }
 
 .users__ul > li {
@@ -138,15 +110,6 @@
   align-items: center;
 }
 
-.form__hireWorker > div > select {
-  height: 1.8rem;
-  width: 98%;
-  padding: 0 5px;
-
-  border-radius: var(--border-radius-0);
-  color: var(--dark-blue);
-}
-
 .close-hire-form {
   position: absolute;
   right: -10px;
@@ -169,10 +132,6 @@
 }
 
 @media (max-width: 390px) {
-  .user-info > span {
-    display: none;
-  }
-
   .users__options {
     gap: var(--gap-1);
   }

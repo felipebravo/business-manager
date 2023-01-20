@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="DashBoard" />
-    <link rel="stylesheet" href="../styles/companies.css" />
+    <link rel="stylesheet" href="../styles/pages.css/companies.css" />
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="../styles/fonts.css" />
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../styles/textarea.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="stylesheet" href="../styles/select.css" />
+    <link rel="stylesheet" href="../styles/scrollbar.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -59,7 +61,7 @@
       </nav>
     </header>
     <div class="current-page"><h2>Empresas</h2></div>
-    <main class="main__container">
+    <main class="main__container main__with__responsivity">
       <section class="companies">
         <ul>
           <li>
@@ -155,7 +157,7 @@
               </div>
               <div class="sector__options">
                 <label class="font-text-2" for="sector">Escolha o setor</label>
-                <select name="sector" id="sector">
+                <select name="sector" id="sector" class="select-default">
                   <option id="0">Selecione o setor desejado</option>
                 </select>
               </div>
@@ -167,14 +169,14 @@
               Cadastrar
             </button>
           </form>
-          <button class="button-close">
+          <button class="button-close close-modal">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </section>
       <section class="render__companies hidden">
         <div>
-          <ul></ul>
+          <ul class="scrollbar-default"></ul>
           <button class="close-section button-close">
             <i class="fa-solid fa-xmark"></i>
           </button>
